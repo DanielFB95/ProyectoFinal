@@ -17,5 +17,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void _doLoginEvent(DoLoginEvent event, Emitter<LoginState> emit) async {
     emit(LoginLoadingState());
+    try {
+      final loginResponse = await authRepository.login(event.loginDto);
+      emit(LoginSuccessState(loginResponse));
+      return;
+    } on Exception catch (e) {
+      emit(LoginErrorState(e.toString()));
+    }
   }
 }
