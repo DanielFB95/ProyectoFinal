@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.ProyectoFinal.security;
 
+import com.salesianostriana.dam.ProyectoFinal.security.dto.JwtUserDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.security.jwt.JwtProvider;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
