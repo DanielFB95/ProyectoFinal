@@ -11,10 +11,8 @@ public class UserEntityDtoConverter {
         return GetUserEntityDto.builder()
                 .nombre(userEntity.getNombre())
                 .apellidos(userEntity.getApellidos())
-                .direccion(userEntity.getDireccion())
                 .email(userEntity.getEmail())
                 .telefono(userEntity.getTelefono())
-                .avatar(userEntity.getAvatar())
                 .rol(userEntity.getRol().name())
                 .build();
     }
