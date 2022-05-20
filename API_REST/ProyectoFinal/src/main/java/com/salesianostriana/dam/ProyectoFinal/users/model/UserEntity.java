@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.ProyectoFinal.users.model;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Parameter;
@@ -19,9 +20,10 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "usuario")
 @EntityListeners(AuditingEntityListener.class)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class UserEntity implements UserDetails {
 
     @Id
@@ -41,14 +43,14 @@ public class UserEntity implements UserDetails {
 
     private String nombre;
     private String apellidos;
-    private String direccion;
 
     @NaturalId
     @Column(unique = true, updatable = false)
     private String email;
     private String telefono;
-    private String avatar;
+    private String dni;
     private String password;
+    private String direccion;
 
     @Enumerated(EnumType.STRING)
     private UserRole rol;

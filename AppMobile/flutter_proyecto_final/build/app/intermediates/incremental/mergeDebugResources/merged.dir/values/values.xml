@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr format="reference" name="nestedScrollViewStyle"/>
+<<<<<<< HEAD
     <attr format="enum" name="splitLayoutDirection">
         <enum name="locale" value="0"/>
         <enum name="ltr" value="1"/>
@@ -9,6 +10,8 @@
     <attr format="dimension" name="splitMinSmallestWidth"/>
     <attr format="dimension" name="splitMinWidth"/>
     <attr format="float" name="splitRatio"/>
+=======
+>>>>>>> bb355a4fdb0e9f1f440cb21535344f3e40625bed
     <color name="androidx_core_ripple_material_light">#1f000000</color>
     <color name="androidx_core_secondary_text_default_material_light">#8a000000</color>
     <color name="notification_action_color_filter">#ffffffff</color>
@@ -70,7 +73,10 @@
     <item name="accessibility_custom_action_7" type="id"/>
     <item name="accessibility_custom_action_8" type="id"/>
     <item name="accessibility_custom_action_9" type="id"/>
+<<<<<<< HEAD
     <item name="androidx_window_activity_scope" type="id"/>
+=======
+>>>>>>> bb355a4fdb0e9f1f440cb21535344f3e40625bed
     <item name="line1" type="id"/>
     <item name="line3" type="id"/>
     <item name="tag_accessibility_actions" type="id"/>
@@ -112,6 +118,7 @@
     <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
     <style name="Widget.Compat.NotificationActionContainer" parent=""/>
     <style name="Widget.Compat.NotificationActionText" parent=""/>
+<<<<<<< HEAD
     <declare-styleable name="ActivityFilter">
         <!-- Component name of the primary activity in the split. Must be non-empty. Can contain a
          single wildcard at the end. -->
@@ -124,6 +131,8 @@
         <!-- Whether the activity should always be expanded on launch. -->
         <attr format="boolean" name="alwaysExpand"/>
     </declare-styleable>
+=======
+>>>>>>> bb355a4fdb0e9f1f440cb21535344f3e40625bed
     <declare-styleable name="Capability">
         <!-- Resource reference to the string array of query patterns for a custom capability. -->
         <attr format="reference" name="queryPatterns"/>
@@ -262,6 +271,7 @@
         <!-- The current color for the offset inside the gradient. -->
         <attr name="android:color"/>
     </declare-styleable>
+<<<<<<< HEAD
     <declare-styleable name="SplitPairFilter">
         <!-- Component name of the primary activity in the split. Must be non-empty. Can contain a
          wildcard at the end or instead of package name and/or class name. -->
@@ -298,4 +308,6 @@
         <attr name="splitMinSmallestWidth"/>
         <attr name="splitLayoutDirection"/>
     </declare-styleable>
+=======
+>>>>>>> bb355a4fdb0e9f1f440cb21535344f3e40625bed
 </resources>

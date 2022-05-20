@@ -61,6 +61,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/flutter_image_picker_file_paths" />
         </provider>
+<<<<<<< HEAD
 
         <uses-library
             android:name="androidx.window.extensions"
@@ -68,6 +69,8 @@
         <uses-library
             android:name="androidx.window.sidecar"
             android:required="false" />
+=======
+>>>>>>> bb355a4fdb0e9f1f440cb21535344f3e40625bed
     </application>
 
 </manifest>
