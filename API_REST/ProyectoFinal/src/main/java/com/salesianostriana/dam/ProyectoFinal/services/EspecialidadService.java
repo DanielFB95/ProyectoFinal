@@ -12,6 +12,7 @@ import org.webjars.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,7 +47,9 @@ public class EspecialidadService {
                         .orElseThrow(() -> new NotFoundException("La especialidad con id: "+ id + " no se ha encontrado.")));
     }
 
-    public List<Especialidad> findAll(){
-        return especialidadRepository.findAll();
+    public List<GetEspecilidadDto> findAll(){
+        return especialidadRepository.findAll().stream()
+                .map(especialidadDtoConverter::especialidadToGetEspecialidadDto)
+                .collect(Collectors.toList());
     }
 }

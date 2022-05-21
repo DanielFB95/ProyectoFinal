@@ -40,10 +40,7 @@ public class EspecialidadController {
 
     @GetMapping("/")
     public ResponseEntity<List<GetEspecilidadDto>> findAll(){
-        return ResponseEntity.ok().body(especialidadService.findAll()
-                .stream()
-                .map(especialidadDtoConverter::especialidadToGetEspecialidadDto)
-                .collect(Collectors.toList()));
+        return ResponseEntity.ok().body(especialidadService.findAll());
     }
 
     @DeleteMapping("/{id}")
