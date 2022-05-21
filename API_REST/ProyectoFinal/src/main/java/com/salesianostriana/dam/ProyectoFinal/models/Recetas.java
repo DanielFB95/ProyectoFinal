@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.ProyectoFinal.models;
 
+import com.salesianostriana.dam.ProyectoFinal.models.enums.DiasDeTomas;
+import com.salesianostriana.dam.ProyectoFinal.models.enums.MomentosDeTomas;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,33 +20,29 @@ public class Recetas {
 
     @Column(name = "fechainicio")
     private LocalDateTime fechaInicio;
+
     @Column(name = "fechafin")
     private LocalDateTime fechaFin;
 
-    @Builder.Default
-    @Access(AccessType.PROPERTY)
     @Column(name = "diasdetoma")
-    @ElementCollection(targetClass=String.class)
-    private List<String> diasDeToma = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = DiasDeTomas.class)
+    private List<DiasDeTomas> diasDeToma;
 
-    @Builder.Default
-    @Access(AccessType.PROPERTY)
     @Column(name = "momentosdetoma")
-    @ElementCollection(targetClass=String.class)
-    private List<String> momentosDeToma = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = MomentosDeTomas.class)
+    private List<MomentosDeTomas> momentosDeToma;
 
     @ManyToOne
-/*    @MapsId("medicamento_id")*/
     @JoinColumn(name = "medicamento_id", foreignKey = @ForeignKey(name = "FK_RECETA_MEDICAMENTO"))
     private Medicamento medicamento;
 
     @ManyToOne
-/*    @MapsId("medico_id")*/
     @JoinColumn(name = "medico_id", foreignKey = @ForeignKey(name = "FK_RECETAS_MEDICO"))
     private Medico medico;
 
     @ManyToOne
-/*    @MapsId("pacient_id")*/
     @JoinColumn(name = "paciente_id", foreignKey = @ForeignKey(name = "FK_RECETAS_PACIENTE"))
     private Paciente paciente;
 

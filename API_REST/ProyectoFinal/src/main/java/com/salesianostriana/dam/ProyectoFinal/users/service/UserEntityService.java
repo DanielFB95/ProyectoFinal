@@ -38,8 +38,8 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
     public UserEntity saveMedico (CreateMedicoDto newUser){
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
-            UserEntity medico = Medico.builder()
-                    .password(newUser.getPassword())
+            Medico medico = Medico.builder()
+                    .password(passwordEncoder.encode(newUser.getPassword()))
                     .nombre(newUser.getNombre())
                     .apellidos(newUser.getApellidos())
                     .email(newUser.getEmail())
@@ -51,8 +51,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
                     .build();
 
             Especialidad especialidad = especialidadRepository.findById(newUser.getEspecialidad()).orElseThrow(() -> new RuntimeException());
-            //medico.
-
+            medico.addEspecialidad(especialidad);
             return save(medico);
 
         }else{

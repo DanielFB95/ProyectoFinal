@@ -51,6 +51,7 @@ public class UserEntity implements UserDetails {
     private String dni;
     private String password;
     private String direccion;
+    private String avatar;
 
     @Enumerated(EnumType.STRING)
     private UserRole rol;
