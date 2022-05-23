@@ -5,12 +5,13 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Entity
 @SuperBuilder
-public class Medico extends UserEntity {
+public class Medico extends UserEntity implements Serializable {
 
     @Column(name = "numcolegiado")
     private String numColegiado;

@@ -35,6 +35,27 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
                 .orElseThrow(() -> new UsernameNotFoundException(email + " no encontrado."));
     }
 
+    public UserEntity saveAdmin (CreateUserEntityDto userEntity){
+
+        if(userEntity.getPassword().contentEquals(userEntity.getPassword2())){
+
+            UserEntity admin = UserEntity.builder()
+                    .nombre(userEntity.getNombre())
+                    .apellidos(userEntity.getApellidos())
+                    .email(userEntity.getEmail())
+                    .telefono(userEntity.getTelefono())
+                    .dni(userEntity.getDni())
+                    .password(passwordEncoder.encode(userEntity.getPassword()))
+                    .direccion(userEntity.getDireccion())
+                    .rol(UserRole.ADMIN)
+                    .build();
+
+            return save(admin);
+        }else {
+            return null;
+        }
+    }
+
     public UserEntity saveMedico (CreateMedicoDto newUser){
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){

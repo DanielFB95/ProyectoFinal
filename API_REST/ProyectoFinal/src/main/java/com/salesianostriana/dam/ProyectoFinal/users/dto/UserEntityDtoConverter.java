@@ -12,6 +12,7 @@ public class UserEntityDtoConverter {
                 .nombre(userEntity.getNombre())
                 .apellidos(userEntity.getApellidos())
                 .email(userEntity.getEmail())
+                .direccion(userEntity.getDireccion())
                 .telefono(userEntity.getTelefono())
                 .rol(userEntity.getRol().name())
                 .build();
