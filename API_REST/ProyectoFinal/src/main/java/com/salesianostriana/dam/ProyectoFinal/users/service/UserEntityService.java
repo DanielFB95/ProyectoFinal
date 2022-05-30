@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.UUID;
 
@@ -59,6 +60,9 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
     public UserEntity saveMedico (CreateMedicoDto newUser){
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
+
+            Especialidad especialidad = especialidadRepository.findById(newUser.getEspecialidad()).orElseThrow(() -> new RuntimeException());
+
             Medico medico = Medico.builder()
                     .password(passwordEncoder.encode(newUser.getPassword()))
                     .nombre(newUser.getNombre())
@@ -69,10 +73,9 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
                     .direccion(newUser.getDireccion())
                     .rol(UserRole.MEDICO)
                     .numColegiado(newUser.getNumColegiado())
+                    .especialidad(especialidad)
                     .build();
 
-            Especialidad especialidad = especialidadRepository.findById(newUser.getEspecialidad()).orElseThrow(() -> new RuntimeException());
-            medico.addEspecialidad(especialidad);
             return save(medico);
 
         }else{
@@ -82,10 +85,12 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
 
     public UserEntity savePaciente (CreatePacienteDto newUser){
 
+        //UserEntity medico = repository.findById(id).orElseThrow(() -> new NotFoundException("No se ha encontrado el médico con id: "+ id));
+
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
 
             UserEntity paciente = Paciente.builder()
-                    .password(newUser.getPassword())
+                    .password(passwordEncoder.encode(newUser.getPassword()))
                     .nombre(newUser.getNombre())
                     .apellidos(newUser.getApellidos())
                     .email(newUser.getEmail())

@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +15,16 @@ import java.util.List;
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 @Entity
-public class Recetas implements Serializable {
+public class Receta implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "fechainicio")
-    private LocalDateTime fechaInicio;
+    private LocalDate fechaInicio;
 
     @Column(name = "fechafin")
-    private LocalDateTime fechaFin;
+    private LocalDate fechaFin;
 
     @Column(name = "diasdetoma")
     @Enumerated(EnumType.STRING)

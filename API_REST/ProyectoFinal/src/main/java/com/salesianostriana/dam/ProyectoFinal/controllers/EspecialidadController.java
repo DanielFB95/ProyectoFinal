@@ -22,15 +22,15 @@ public class EspecialidadController {
     private final EspecialidadService especialidadService;
 
     @PostMapping("/")
-    public ResponseEntity<Especialidad> create(@RequestBody CreateEspecialidadDto createEspecialidadDto){
+    public ResponseEntity<GetEspecilidadDto> create(@RequestBody CreateEspecialidadDto createEspecialidadDto){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(especialidadService.save(createEspecialidadDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(especialidadDtoConverter.especialidadToGetEspecialidadDto(especialidadService.save(createEspecialidadDto)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Especialidad> edit(@PathVariable Long id, @RequestBody CreateEspecialidadDto nuevaEspecialidad){
+    public ResponseEntity<GetEspecilidadDto> edit(@PathVariable Long id, @RequestBody CreateEspecialidadDto nuevaEspecialidad){
 
-        return ResponseEntity.ok().body(especialidadService.edit(id, nuevaEspecialidad));
+        return ResponseEntity.ok().body(especialidadDtoConverter.especialidadToGetEspecialidadDto(especialidadService.edit(id, nuevaEspecialidad)));
     }
 
     @GetMapping("/{id}")

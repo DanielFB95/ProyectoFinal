@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -53,6 +54,7 @@ public class UserEntity implements UserDetails, Serializable {
     private String password;
     private String direccion;
     private String avatar;
+    private LocalDate fechaNacimiento;
 
     @Enumerated(EnumType.STRING)
     private UserRole rol;

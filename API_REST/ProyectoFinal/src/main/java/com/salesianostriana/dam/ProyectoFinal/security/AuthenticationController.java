@@ -28,6 +28,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -98,14 +100,14 @@ public class AuthenticationController {
         return ResponseEntity.ok(jwtUserDtoConverter.userToJwtUserResponse(user, null));
     }
 
-    @Operation(summary = "Registra un nuevo propietario.")
+    @Operation(summary = "Registra un nuevo medico.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Se han registrado un propietario.",
+                    description = "Se han registrado un medico.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserEntity.class))}),
             @ApiResponse(responseCode = "404",
-                    description = "No se ha registrado ningún propietario.",
+                    description = "No se ha registrado ningún medico.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserEntity.class))})
             ,
@@ -126,14 +128,14 @@ public class AuthenticationController {
     }
 
 
-    @Operation(summary = "Registra un nuevo administrador.")
+    @Operation(summary = "Registra un nuevo paciente.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Se han registrado un administrador.",
+                    description = "Se han registrado un paciente.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserEntity.class))}),
             @ApiResponse(responseCode = "404",
-                    description = "No se ha registrado ningún administrador.",
+                    description = "No se ha registrado ningún paciente.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserEntity.class))})
             ,
@@ -142,7 +144,7 @@ public class AuthenticationController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Paciente.class))})})
     @PostMapping("/registro/paciente")
-    public ResponseEntity<GetUserEntityDto> nuevoPaciente(@RequestBody CreatePacienteDto nuevoPaciente) {
+    public ResponseEntity<GetUserEntityDto> nuevoPaciente( @RequestBody CreatePacienteDto nuevoPaciente) {
 
         UserEntity user = userEntityService.savePaciente(nuevoPaciente);
 
@@ -153,33 +155,5 @@ public class AuthenticationController {
         }
     }
 
-/*
-    @Operation(summary = "Registra un nuevo gestor.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Se han registrado un gestor.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserEntity.class))}),
-            @ApiResponse(responseCode = "404",
-                    description = "No se ha registrado ningún gestor.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserEntity.class))})
-            ,
-            @ApiResponse(responseCode = "401",
-                    description = "No tiene permiso para realizar esta acción.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Vivienda.class))})})
-    @PostMapping("/register/gestor")
-    public ResponseEntity<GetUserEntityDto> nuevoGestor(@RequestBody CreateUserEntityDto nuevoGestor) {
-
-        UserEntity user = userEntityService.saveGestor(nuevoGestor);
-
-
-        if (user == null) {
-            return ResponseEntity.badRequest().build();
-        } else {
-            return ResponseEntity.ok(userEntityDtoConverter.UserEntityToGetUserEntityDto(user));
-        }
-    }*/
 }
 

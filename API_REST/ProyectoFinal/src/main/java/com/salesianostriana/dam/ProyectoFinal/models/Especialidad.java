@@ -3,10 +3,7 @@ package com.salesianostriana.dam.ProyectoFinal.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter @Setter
@@ -18,6 +15,12 @@ public class Especialidad implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+
+    @OneToOne(mappedBy = "especialidad", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Medico medico;
+
+
+
 
     public Especialidad (String nombre){
         this.nombre = nombre;
