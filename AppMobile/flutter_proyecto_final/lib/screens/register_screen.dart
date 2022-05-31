@@ -97,17 +97,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: SizedBox(
                 width: 125,
                 //child: Image.asset('', width: 100,fit: BoxFit.cover,),
-                ),
               ),
+            ),
             Padding(padding: EdgeInsets.only(top: 25)),
             Center(
-              child: Text('Creación de una',
+              child: Text(
+                'Creación de una',
                 style: TextStyle(fontSize: 20, color: Colors.black54),
               ),
             ),
             Center(
-              child: Text('nueva cuenta.',
-                style: TextStyle(fontSize: 20,color: Colors.black54),
+              child: Text(
+                'nueva cuenta.',
+                style: TextStyle(fontSize: 20, color: Colors.black54),
               ),
             ),
             Padding(
@@ -121,41 +123,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: TextFormField(
                         controller: usernameController,
                         decoration: const InputDecoration(
-                          hintText: 'Nombre de usuario'),
-                          validator: (value) {
-                            if(value == null || value.isEmpty){
-                              return 'Por favor introduzca algún texto';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Center(
-                child: Card(
-                  child: SizedBox(
-                    width: 300,
-                    child: Padding(padding: EdgeInsets.only(top: 15),
-                      child: TextFormField(
-                        controller: fullnameController,
-                        decoration: const InputDecoration(hintText: 'Nombre completo'),
+                            hintText: 'Nombre de usuario'),
                         validator: (value) {
-                          if(value == null || value.isEmpty){
-                            return 'Por favor introduzca su nombre';
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor introduzca algún texto';
                           }
                           return null;
                         },
                       ),
                     ),
                   ),
-                )
-              )
-              )
+                ),
+              ),
+            ),
+            Center(
+                child: Card(
+              child: SizedBox(
+                width: 300,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: TextFormField(
+                    controller: fullnameController,
+                    decoration:
+                        const InputDecoration(hintText: 'Nombre completo'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor introduzca su nombre';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+            ))
           ],
-        ),),
+        ),
+      ),
     );
   }
 }
