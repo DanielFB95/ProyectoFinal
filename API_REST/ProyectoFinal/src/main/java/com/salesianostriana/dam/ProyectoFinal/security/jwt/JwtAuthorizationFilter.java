@@ -49,7 +49,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 if(userEntity.isPresent()){
 
                     UserEntity user = userEntity.get();
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, user.getRol(), user.getAuthorities());
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                            user, user.getRol(), user.getAuthorities());
 
                     authentication.setDetails(new WebAuthenticationDetails(request));
 

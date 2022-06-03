@@ -65,13 +65,8 @@ public class UserEntity implements UserDetails, Serializable {
     }
 
     @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
     public String getUsername() {
-        return nombre;
+        return email;
     }
 
     @Override

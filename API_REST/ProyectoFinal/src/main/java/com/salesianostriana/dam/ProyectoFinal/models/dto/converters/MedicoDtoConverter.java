@@ -3,10 +3,14 @@ package com.salesianostriana.dam.ProyectoFinal.models.dto.converters;
 import com.salesianostriana.dam.ProyectoFinal.models.Medico;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetMedicoDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class MedicoDtoConverter {
+
+    private final EspecialidadDtoConverter especialidadDtoConverter;
 
     public Medico createMedicoDtoToMedico (CreateMedicoDto createMedicoDto){
         Medico medico = Medico.builder()
@@ -25,6 +29,7 @@ public class MedicoDtoConverter {
     public GetMedicoDto medicoToMedicoDto (Medico medico){
 
         GetMedicoDto getMedicoDto = GetMedicoDto.builder()
+                .id(medico.getId())
                 .nombre(medico.getNombre())
                 .apellidos(medico.getApellidos())
                 .email(medico.getEmail())
@@ -33,7 +38,7 @@ public class MedicoDtoConverter {
                 .direccion(medico.getDireccion())
                 .rol(medico.getRol())
                 .numColegiado(medico.getNumColegiado())
-                .especialidad(medico.getEspecialidad())
+                .especialidad(especialidadDtoConverter.especialidadToGetEspecialidadDto(medico.getEspecialidad()))
                 .build();
 
         return getMedicoDto;

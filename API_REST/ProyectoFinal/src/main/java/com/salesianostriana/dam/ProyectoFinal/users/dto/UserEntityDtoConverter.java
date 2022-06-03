@@ -9,6 +9,7 @@ public class UserEntityDtoConverter {
     public GetUserEntityDto UserEntityToGetUserEntityDto(UserEntity userEntity){
 
         return GetUserEntityDto.builder()
+                .id(userEntity.getId())
                 .nombre(userEntity.getNombre())
                 .apellidos(userEntity.getApellidos())
                 .email(userEntity.getEmail())

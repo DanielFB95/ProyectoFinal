@@ -10,7 +10,6 @@ public class JwtUserResponse {
     private String nombre;
     private String apellidos;
     private String telefono;
-    private String direccion;
     private String email;
     private String token;
 }

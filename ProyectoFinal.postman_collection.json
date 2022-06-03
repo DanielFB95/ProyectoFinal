@@ -1,43 +1,13 @@
 {
 	"info": {
-		"_postman_id": "dc3ccc0b-3bb6-48e7-99fb-d7178dc94c0a",
+		"_postman_id": "4ac251b8-144b-497c-866a-c4705591d336",
 		"name": "ProyectoFinal",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17654593"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Authentication",
 			"item": [
-				{
-					"name": "Dar de alta un medico",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandez.bedan20@triana.salesianos.edu\",\r\n    \"telefono\": \"555-555-555\",\r\n    \"dni\": \"A123456789\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"numColegiado\": \"222222222\",\r\n    \"especialidad\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/auth/registro/medico",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"auth",
-								"registro",
-								"medico"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Login",
 					"event": [
@@ -53,21 +23,11 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"fernandez.bedan20@triana.salesianos.edu\",\r\n    \"password\": \"daniel12\"\r\n}",
+							"raw": "{\r\n    \"email\": \"fernandebedan@trianasalesianos.edu\",\r\n    \"password\": \"daniel12\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -87,6 +47,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -96,6 +85,16 @@
 				{
 					"name": "Nueva especialidad",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -128,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Traumatólogo\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Medico de familia\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -205,6 +204,36 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -377,15 +406,99 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/auth/registro/paciente",
+							"raw": "localhost:9000/user/paciente",
 							"host": [
 								"localhost"
 							],
 							"port": "9000",
 							"path": [
-								"auth",
-								"registro",
+								"user",
 								"paciente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/paciente/c0a83801-8128-1081-8181-28715c340001",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								"c0a83801-8128-1081-8181-28715c340001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener el listado de pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/paciente/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/paciente/c0a83801-8128-1081-8181-28715c340001",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								"c0a83801-8128-1081-8181-28715c340001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un paciente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandezbedan20@triana.salesianos.edu\",\r\n    \"telefono\": \"Nuevo tlf de prueba\",\r\n    \"dni\": \"Nuevo dni de prueba\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"observaciones\": \"Texto de prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/paciente/c0a83801-8128-1081-8181-287358880002",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								"c0a83801-8128-1081-8181-287358880002"
 							]
 						}
 					},
@@ -403,7 +516,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandezbedan@triana.salesianos.edu\",\r\n    \"telefono\": \"555-555-555\",\r\n    \"dni\": \"A123456789\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"especialidad\": 1\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandebedan@trianasalesianos.edu\",\r\n    \"telefono\": \"555-555-555\",\r\n    \"dni\": \"A123456789\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"numcolegiado\": \"A22222222\",\r\n    \"especialidad\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -411,14 +524,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:9000/auth/registro/medico",
+							"raw": "localhost:9000/user/medico",
 							"host": [
 								"localhost"
 							],
 							"port": "9000",
 							"path": [
-								"auth",
-								"registro",
+								"user",
 								"medico"
 							]
 						}
@@ -431,14 +543,81 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:9000/medico/1",
+							"raw": "localhost:9000/medico/c0a83801-8128-14d3-8181-2834f3220000",
 							"host": [
 								"localhost"
 							],
 							"port": "9000",
 							"path": [
 								"medico",
-								"1"
+								"c0a83801-8128-14d3-8181-2834f3220000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar medicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/medico/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un médico",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandezbedan@triana.salesianos.edu\",\r\n    \"telefono\": \"Nuevo telefono\",\r\n    \"dni\": \"nuevo dni\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"especialidad\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/medico/c0a83801-8128-12db-8181-286320940000",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								"c0a83801-8128-12db-8181-286320940000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un médico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/medico/c0a83801-8128-1081-8181-2870b49c0000",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								"c0a83801-8128-1081-8181-2870b49c0000"
 							]
 						}
 					},
@@ -480,8 +659,7 @@
 	"variable": [
 		{
 			"key": "token",
-			"value": "",
-			"type": "string"
+			"value": ""
 		}
 	]
 }

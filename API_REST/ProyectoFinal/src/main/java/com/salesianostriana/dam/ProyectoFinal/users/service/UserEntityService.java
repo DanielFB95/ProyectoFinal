@@ -18,8 +18,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import org.webjars.NotFoundException;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.UUID;
 
 @Service("userDetailsService")
@@ -28,6 +34,8 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
 
     private final PasswordEncoder passwordEncoder;
     private final EspecialidadRepository especialidadRepository;
+/*    private final FileSystemStorageService storageService;
+    private final ImageScalerService imageScaler;*/
 
 
     @Override
@@ -57,9 +65,23 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
         }
     }
 
-    public UserEntity saveMedico (CreateMedicoDto newUser){
+    public UserEntity saveMedico (CreateMedicoDto newUser/* MultipartFile avatar*/) throws Exception{
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
+
+          /*  String uri = null;
+
+            if(!avatar.isEmpty()){
+                String filename = storageService.store(avatar);
+                String ext = StringUtils.getFilenameExtension(filename);
+
+                BufferedImage originalImage = ImageIO.read(avatar.getInputStream());
+                BufferedImage resized = imageScaler.simpleResizeImage(originalImage,128);
+                OutputStream out = Files.newOutputStream(storageService.load(filename));
+                ImageIO.write(resized,ext,out);
+
+                uri = storageService.convertToUri(filename);
+            }*/
 
             Especialidad especialidad = especialidadRepository.findById(newUser.getEspecialidad()).orElseThrow(() -> new RuntimeException());
 
@@ -85,7 +107,6 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
 
     public UserEntity savePaciente (CreatePacienteDto newUser){
 
-        //UserEntity medico = repository.findById(id).orElseThrow(() -> new NotFoundException("No se ha encontrado el médico con id: "+ id));
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
 

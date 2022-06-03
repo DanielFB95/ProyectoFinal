@@ -1,12 +1,21 @@
 package com.salesianostriana.dam.ProyectoFinal.controllers;
 
+import com.salesianostriana.dam.ProyectoFinal.models.Especialidad;
 import com.salesianostriana.dam.ProyectoFinal.models.Medicamento;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.MedicamentoDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.MedicamentoRepository;
 import com.salesianostriana.dam.ProyectoFinal.services.MedicamentoService;
+import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,32 +23,43 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/medicamento")
+@Tag(name="Medicamento", description = "Controlador de medicamento")
 public class MedicamentoController {
 
     private final MedicamentoService medicamentoService;
 
+    @Operation(summary = "Mostrar un medicamento.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se ha encontrado el medicamento .",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Especialidad.class))}),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado ninguna especialidad.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Especialidad.class))})})
     @GetMapping("/{id}")
-    public ResponseEntity<MedicamentoDto> findOne(@PathVariable Long id){
+    public ResponseEntity<MedicamentoDto> findOne(@PathVariable Long id,@AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.ok().body(medicamentoService.findOne(id));
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<MedicamentoDto>> findAll(){
+    public ResponseEntity<List<MedicamentoDto>> findAll(@AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.ok().body(medicamentoService.findAll());
     }
 
     @PostMapping("/")
-    public ResponseEntity<Medicamento> save(@RequestBody MedicamentoDto medicamentoDto){
+    public ResponseEntity<Medicamento> save(@RequestBody MedicamentoDto medicamentoDto,@AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.status(HttpStatus.CREATED).body(medicamentoService.save(medicamentoDto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Medicamento> edit(@PathVariable Long id, @RequestBody MedicamentoDto medicamentoDto){
+    public ResponseEntity<Medicamento> edit(@PathVariable Long id, @RequestBody MedicamentoDto medicamentoDto,@AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.of(medicamentoService.edit(id, medicamentoDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id,@AuthenticationPrincipal UserEntity userEntity){
         medicamentoService.delete(id);
         return ResponseEntity.noContent().build();
     }

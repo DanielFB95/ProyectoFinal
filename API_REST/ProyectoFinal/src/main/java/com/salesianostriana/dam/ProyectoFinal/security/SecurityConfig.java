@@ -17,6 +17,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -37,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-
+        http.cors().configurationSource(corsConfigurationSource());
         http
                 .csrf().disable()
                     .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
@@ -46,7 +52,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/auth/login").permitAll();
+                .antMatchers(HttpMethod.POST, "/auth/login").anonymous()
+                .antMatchers(HttpMethod.GET, "/auth/me").authenticated()
+                .antMatchers(HttpMethod.POST, "/especialidad/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/especialidad/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/especialidad/{id}").hasAnyRole("ADMIN","MEDICO")
+                .antMatchers(HttpMethod.GET, "/especialidad/").hasAnyRole("ADMIN","MEDICO")
+                .antMatchers(HttpMethod.DELETE, "/especialidad/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/medicamento/{id}").hasAnyRole("ADMIN","MEDICO")
+                .antMatchers(HttpMethod.GET, "/medicamento/").hasAnyRole("ADMIN","MEDICO")
+                .antMatchers(HttpMethod.POST, "/medicamento/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/medicamento/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/medicamento/{id}").hasRole("ADMIN")
+                .anyRequest().permitAll();
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
         http.headers().frameOptions().disable();
@@ -56,5 +74,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
+    }
+
+
+
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT"));
+        configuration.setAllowedHeaders(Collections.singletonList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

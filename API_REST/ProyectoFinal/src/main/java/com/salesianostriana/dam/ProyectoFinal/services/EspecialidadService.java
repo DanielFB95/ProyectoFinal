@@ -3,15 +3,14 @@ package com.salesianostriana.dam.ProyectoFinal.services;
 import com.salesianostriana.dam.ProyectoFinal.models.Especialidad;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.EspecialidadDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateEspecialidadDto;
-import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetEspecilidadDto;
+import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetEspecialidadDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.EspecialidadRepository;
+import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,13 +40,13 @@ public class EspecialidadService {
         especialidadRepository.deleteById(id);
     }
 
-    public GetEspecilidadDto findOne(Long id){
+    public GetEspecialidadDto findOne(Long id){
         return especialidadDtoConverter.especialidadToGetEspecialidadDto(
                 especialidadRepository.findById(id)
                         .orElseThrow(() -> new NotFoundException("La especialidad con id: "+ id + " no se ha encontrado.")));
     }
 
-    public List<GetEspecilidadDto> findAll(){
+    public List<GetEspecialidadDto> findAll(){
         return especialidadRepository.findAll().stream()
                 .map(especialidadDtoConverter::especialidadToGetEspecialidadDto)
                 .collect(Collectors.toList());

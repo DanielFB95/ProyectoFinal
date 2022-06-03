@@ -51,20 +51,20 @@ public class JwtProvider {
                 .setHeaderParam("typ", TOKEN_TYPE)
                 .setSubject(user.getId().toString())
                 .setIssuedAt(tokenExpirationDate)
-                .claim("nombre",user.getNombre())
+                .claim("email",user.getEmail())
                 .claim("rol",user.getRol().name())
                 .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                 .compact();
     }
 
     public UUID getUserIdFromJwt(String token){
-        return UUID.fromString(parser.parseClaimsJwt(token).getBody().getSubject());
+        return UUID.fromString(parser.parseClaimsJws(token).getBody().getSubject());
     }
 
     public boolean validateToken(String token){
 
         try{
-            parser.parseClaimsJwt(token);
+            parser.parseClaimsJws(token);
             return true;
         }catch(SignatureException | MalformedJwtException | ExpiredJwtException | UnsupportedJwtException | IllegalArgumentException ex){
             log.info("Error con el token:" + ex.getMessage());
