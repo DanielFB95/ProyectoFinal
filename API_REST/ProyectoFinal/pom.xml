@@ -12,9 +12,9 @@
 	<artifactId>ProyectoFinal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ProyectoFinal</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Proyecto final DAM Consulta medica</description>
 	<properties>
-		<java.version>17</java.version>
+		<!-- <java.version>17</java.version> -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
@@ -38,11 +38,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
