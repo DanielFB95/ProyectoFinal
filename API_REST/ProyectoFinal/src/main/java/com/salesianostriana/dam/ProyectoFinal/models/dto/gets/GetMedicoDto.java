@@ -5,6 +5,8 @@ import com.salesianostriana.dam.ProyectoFinal.models.Medico;
 import com.salesianostriana.dam.ProyectoFinal.users.model.UserRole;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter @Setter
@@ -15,6 +17,7 @@ public class GetMedicoDto {
     private UUID id;
     private String nombre;
     private String apellidos;
+    private LocalDate fechaNacimiento;
     private String email;
     private String telefono;
     private String dni;

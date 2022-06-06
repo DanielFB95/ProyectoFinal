@@ -3,9 +3,11 @@ package com.salesianostriana.dam.ProyectoFinal.users.controller;
 import com.salesianostriana.dam.ProyectoFinal.models.Medico;
 import com.salesianostriana.dam.ProyectoFinal.models.Paciente;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.MedicoDtoConverter;
+import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.PacienteDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreatePacienteDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetMedicoDto;
+import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetPacienteDto;
 import com.salesianostriana.dam.ProyectoFinal.users.dto.CreateUserEntityDto;
 import com.salesianostriana.dam.ProyectoFinal.users.dto.GetUserEntityDto;
 import com.salesianostriana.dam.ProyectoFinal.users.dto.UserEntityDtoConverter;
@@ -19,6 +21,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,6 +34,7 @@ public class UserEntityController {
     private final UserEntityService userEntityService;
     private final UserEntityDtoConverter userEntityDtoConverter;
     private final MedicoDtoConverter medicoDtoConverter;
+    private final PacienteDtoConverter pacienteDtoConverter;
 
 
     @Operation(summary = "Registra un nuevo medico.")
@@ -71,7 +75,7 @@ public class UserEntityController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Medico.class))})})
     @PostMapping("/medico")
-    public ResponseEntity<GetMedicoDto> nuevoMedico(@RequestBody CreateMedicoDto nuevoMedico/*, @RequestPart("file")MultipartFile file*/) throws Exception {
+    public ResponseEntity<GetMedicoDto> nuevoMedico(@RequestBody CreateMedicoDto nuevoMedico, @AuthenticationPrincipal UserEntity userEntity/*, @RequestPart("file")MultipartFile file*/) throws Exception {
 
         Medico user = (Medico) userEntityService.saveMedico(nuevoMedico /*file*/);
 
@@ -99,14 +103,14 @@ public class UserEntityController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Paciente.class))})})
     @PostMapping("/paciente")
-    public ResponseEntity<GetUserEntityDto> nuevoPaciente( @RequestBody CreatePacienteDto nuevoPaciente) {
+    public ResponseEntity<GetPacienteDto> nuevoPaciente(@RequestBody CreatePacienteDto nuevoPaciente, @AuthenticationPrincipal UserEntity userEntity) {
 
-        UserEntity user = userEntityService.savePaciente(nuevoPaciente);
+        Paciente user = (Paciente) userEntityService.savePaciente(nuevoPaciente, userEntity);
 
         if (user == null) {
             return ResponseEntity.badRequest().build();
         } else {
-            return ResponseEntity.ok(userEntityDtoConverter.UserEntityToGetUserEntityDto(user));
+            return ResponseEntity.ok(pacienteDtoConverter.pacienteToGetPacienteDto(user));
         }
     }
 

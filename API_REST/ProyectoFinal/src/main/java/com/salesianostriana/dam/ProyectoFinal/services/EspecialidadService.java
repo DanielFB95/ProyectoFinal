@@ -5,8 +5,11 @@ import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.Especialidad
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateEspecialidadDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetEspecialidadDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.EspecialidadRepository;
+import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -15,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class EspecialidadService {
+public class EspecialidadService extends BaseService<Especialidad,Long,EspecialidadRepository> {
 
     private final EspecialidadRepository especialidadRepository;
     private final EspecialidadDtoConverter especialidadDtoConverter;
@@ -46,9 +49,6 @@ public class EspecialidadService {
                         .orElseThrow(() -> new NotFoundException("La especialidad con id: "+ id + " no se ha encontrado.")));
     }
 
-    public List<GetEspecialidadDto> findAll(){
-        return especialidadRepository.findAll().stream()
-                .map(especialidadDtoConverter::especialidadToGetEspecialidadDto)
-                .collect(Collectors.toList());
-    }
+    public Page<Especialidad> findAll(Pageable pageable){
+        return especialidadRepository.findAll(pageable);}
 }

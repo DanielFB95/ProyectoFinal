@@ -4,7 +4,10 @@ import com.salesianostriana.dam.ProyectoFinal.models.Medicamento;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.MedicamentoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.MedicamentoDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.repositories.MedicamentoRepository;
+import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -14,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class MedicamentoService {
+public class MedicamentoService extends BaseService<Medicamento,Long,MedicamentoRepository> {
 
     private final MedicamentoRepository medicamentoRepository;
     private final MedicamentoDtoConverter medicamentoDtoConverter;
@@ -38,10 +41,8 @@ public class MedicamentoService {
                         .orElseThrow(()-> new NotFoundException("No se ha encontrado el medicamento con el id: "+ id)));
     }
 
-    public List<MedicamentoDto> findAll(){
-        return medicamentoRepository.findAll().stream()
-                .map(medicamentoDtoConverter::medicamentoToMedicamentoDto)
-                .collect(Collectors.toList());
+    public Page<Medicamento> findAll(Pageable pageable){
+        return medicamentoRepository.findAll(pageable);
     }
 
     public void delete(Long id){

@@ -6,6 +6,7 @@ import com.salesianostriana.dam.ProyectoFinal.models.Paciente;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreatePacienteDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.EspecialidadRepository;
+import com.salesianostriana.dam.ProyectoFinal.repositories.MedicoRepository;
 import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import com.salesianostriana.dam.ProyectoFinal.users.dto.CreateUserEntityDto;
 import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
@@ -34,6 +35,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
 
     private final PasswordEncoder passwordEncoder;
     private final EspecialidadRepository especialidadRepository;
+    private final MedicoRepository medicoRepository;
 /*    private final FileSystemStorageService storageService;
     private final ImageScalerService imageScaler;*/
 
@@ -51,6 +53,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
             UserEntity admin = UserEntity.builder()
                     .nombre(userEntity.getNombre())
                     .apellidos(userEntity.getApellidos())
+                    .fechaNacimiento(userEntity.getFechaNacimiento())
                     .email(userEntity.getEmail())
                     .telefono(userEntity.getTelefono())
                     .dni(userEntity.getDni())
@@ -89,6 +92,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
                     .password(passwordEncoder.encode(newUser.getPassword()))
                     .nombre(newUser.getNombre())
                     .apellidos(newUser.getApellidos())
+                    .fechaNacimiento(newUser.getFechaNacimiento())
                     .email(newUser.getEmail())
                     .telefono(newUser.getTelefono())
                     .dni(newUser.getDni())
@@ -105,15 +109,16 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
         }
     }
 
-    public UserEntity savePaciente (CreatePacienteDto newUser){
+    public UserEntity savePaciente (CreatePacienteDto newUser, UserEntity userEntity){
 
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
-
-            UserEntity paciente = Paciente.builder()
+            Medico medico = medicoRepository.findById(userEntity.getId()).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));
+            Paciente paciente = Paciente.builder()
                     .password(passwordEncoder.encode(newUser.getPassword()))
                     .nombre(newUser.getNombre())
                     .apellidos(newUser.getApellidos())
+                    .fechaNacimiento(newUser.getFechaNacimiento())
                     .email(newUser.getEmail())
                     .telefono(newUser.getTelefono())
                     .dni(newUser.getDni())
@@ -121,6 +126,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
                     .rol(UserRole.PACIENTE)
                     .observaciones(newUser.getObservaciones())
                     .build();
+            paciente.addMedico(medico);
 
             return save(paciente);
         }else{

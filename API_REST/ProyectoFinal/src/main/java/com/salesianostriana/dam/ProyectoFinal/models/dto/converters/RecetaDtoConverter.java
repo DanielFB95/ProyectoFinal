@@ -13,16 +13,15 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RecetaDtoConverter {
 
-    private final MedicoRepository medicoRepository;
-    private final PacienteRepository pacienteRepository;
-    private final MedicamentoRepository medicamentoRepository;
+    private final MedicoDtoConverter medicoDtoConverter;
+    private final PacienteDtoConverter pacienteDtoConverter;
 
     public Receta createRecetaDtoToReceta(CreateRecetaDto createRecetaDto){
 
         Receta receta = Receta.builder()
                 .fechaInicio(createRecetaDto.getFechaInicio())
                 .fechaFin(createRecetaDto.getFechaFin())
-                .diasDeToma(createRecetaDto.getDiasDeTomas())
+                .diasDeTomas(createRecetaDto.getDiasDeTomas())
                 .momentosDeToma(createRecetaDto.getMomentosDeTomas())
                 .build();
 
@@ -33,8 +32,11 @@ public class RecetaDtoConverter {
         return GetRecetaDto.builder()
                 .fechaInicio(receta.getFechaInicio())
                 .fechaFin(receta.getFechaFin())
-                .diasDeTomas(receta.getDiasDeToma())
+                .diasDeTomas(receta.getDiasDeTomas())
                 .momentosDeTomas(receta.getMomentosDeToma())
+                .medicamento(receta.getMedicamento())
+                .medico(medicoDtoConverter.medicoToMedicoDto(receta.getMedico()))
+                .paciente(pacienteDtoConverter.pacienteToGetPacienteDto(receta.getPaciente()))
                 .build();
     }
 }

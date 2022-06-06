@@ -17,4 +17,10 @@ public class Paciente extends UserEntity implements Serializable {
 
     @ManyToOne
     private Medico medico;
+
+    //Helper
+
+    public void addMedico(Medico nuevoMedico){
+        this.medico = nuevoMedico;
+    }
 }

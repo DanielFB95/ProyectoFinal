@@ -5,8 +5,11 @@ import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.PacienteDtoC
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreatePacienteDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetPacienteDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.PacienteRepository;
+import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -17,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class PacienteService {
+public class PacienteService extends BaseService<Paciente,UUID,PacienteRepository> {
 
     private final PacienteDtoConverter pacienteDtoConverter;
     private final PacienteRepository pacienteRepository;
@@ -42,10 +45,8 @@ public class PacienteService {
         return pacienteDtoConverter.pacienteToGetPacienteDto(pacienteRepository.findById(id).orElseThrow(()-> new NotFoundException("Paciente no encontrado")));
     }
 
-    public List<GetPacienteDto> findAll(){
-        return pacienteRepository.findAll().stream()
-                .map(pacienteDtoConverter::pacienteToGetPacienteDto)
-                .collect(Collectors.toList());
+    public Page<Paciente> findAll(Pageable pageable){
+        return pacienteRepository.findAll(pageable);
     }
 
     public void delete(UUID id){

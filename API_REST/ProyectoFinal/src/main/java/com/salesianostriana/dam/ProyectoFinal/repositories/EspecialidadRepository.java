@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface EspecialidadRepository extends JpaRepository<Especialidad, Long> {
 
-    Optional<Especialidad> findByNombre(String nombre);
+    public boolean existByNombre(String nombre);
 }

@@ -29,7 +29,7 @@ public class Receta implements Serializable {
     @Column(name = "diasdetoma")
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = DiasDeTomas.class)
-    private List<DiasDeTomas> diasDeToma;
+    private List<DiasDeTomas> diasDeTomas;
 
     @Column(name = "momentosdetoma")
     @Enumerated(EnumType.STRING)
@@ -48,4 +48,29 @@ public class Receta implements Serializable {
     @JoinColumn(name = "paciente_id", foreignKey = @ForeignKey(name = "FK_RECETAS_PACIENTE"))
     private Paciente paciente;
 
+    //Helpers
+
+    public void addMedico(Medico nuevoMedico){
+        this.medico = nuevoMedico;
+    }
+
+    public void addPaciente(Paciente nuevoPaciente){
+        this.paciente = nuevoPaciente;
+    }
+
+    public void addMedicamento(Medicamento nuevoMedicamento){
+        this.medicamento = nuevoMedicamento;
+    }
+
+    public void deleteMedico(){
+        this.medico = null;
+    }
+
+    public void deletePaciente(){
+        this.paciente = null;
+    }
+
+    public void deleteMedicamento(){
+        this.medicamento = null;
+    }
 }

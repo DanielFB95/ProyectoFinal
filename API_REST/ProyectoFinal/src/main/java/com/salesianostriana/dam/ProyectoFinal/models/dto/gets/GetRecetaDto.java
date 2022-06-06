@@ -22,6 +22,6 @@ public class GetRecetaDto {
     private List<DiasDeTomas> diasDeTomas;
     private List<MomentosDeTomas> momentosDeTomas;
     private Medicamento medicamento;
-    private Medico medico;
-    private Paciente paciente;
+    private GetMedicoDto medico;
+    private GetPacienteDto paciente;
 }
