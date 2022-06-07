@@ -25,6 +25,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -53,7 +55,7 @@ public class UserEntityController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Medico.class))})})
     @PostMapping("/admin")
-    public GetUserEntityDto saveAdmin(@RequestBody CreateUserEntityDto createUserEntityDto){
+    public GetUserEntityDto saveAdmin(@Valid @RequestBody CreateUserEntityDto createUserEntityDto){
         return userEntityDtoConverter.UserEntityToGetUserEntityDto(
                 userEntityService.saveAdmin(createUserEntityDto));
     }
@@ -75,7 +77,7 @@ public class UserEntityController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Medico.class))})})
     @PostMapping("/medico")
-    public ResponseEntity<GetMedicoDto> nuevoMedico(@RequestBody CreateMedicoDto nuevoMedico, @AuthenticationPrincipal UserEntity userEntity/*, @RequestPart("file")MultipartFile file*/) throws Exception {
+    public ResponseEntity<GetMedicoDto> nuevoMedico(@Valid @RequestBody CreateMedicoDto nuevoMedico, @AuthenticationPrincipal UserEntity userEntity/*, @RequestPart("file")MultipartFile file*/) throws Exception {
 
         Medico user = (Medico) userEntityService.saveMedico(nuevoMedico /*file*/);
 
@@ -103,7 +105,7 @@ public class UserEntityController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Paciente.class))})})
     @PostMapping("/paciente")
-    public ResponseEntity<GetPacienteDto> nuevoPaciente(@RequestBody CreatePacienteDto nuevoPaciente, @AuthenticationPrincipal UserEntity userEntity) {
+    public ResponseEntity<GetPacienteDto> nuevoPaciente(@Valid @RequestBody CreatePacienteDto nuevoPaciente, @AuthenticationPrincipal UserEntity userEntity) {
 
         Paciente user = (Paciente) userEntityService.savePaciente(nuevoPaciente, userEntity);
 

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @Validated
@@ -59,7 +60,7 @@ public class EspecialidadController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Especialidad.class))})})
     @PostMapping("/")
-    public ResponseEntity<GetEspecialidadDto> create(@RequestBody CreateEspecialidadDto createEspecialidadDto, @AuthenticationPrincipal UserEntity userEntity){
+    public ResponseEntity<GetEspecialidadDto> create(@Valid @RequestBody CreateEspecialidadDto createEspecialidadDto, @AuthenticationPrincipal UserEntity userEntity){
 
             return ResponseEntity.status(HttpStatus.CREATED).body(especialidadDtoConverter.especialidadToGetEspecialidadDto(especialidadService.save(createEspecialidadDto)));
     }

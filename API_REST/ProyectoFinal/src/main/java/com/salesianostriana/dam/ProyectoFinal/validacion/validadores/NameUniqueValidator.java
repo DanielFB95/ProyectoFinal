@@ -1,8 +1,8 @@
+/*
 package com.salesianostriana.dam.ProyectoFinal.validacion.validadores;
 
 import com.salesianostriana.dam.ProyectoFinal.repositories.EspecialidadRepository;
 import com.salesianostriana.dam.ProyectoFinal.repositories.MedicamentoRepository;
-import com.salesianostriana.dam.ProyectoFinal.validacion.anotaciones.NameUnique;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
@@ -26,3 +26,4 @@ public class NameUniqueValidator implements ConstraintValidator<NameUnique,Strin
         return StringUtils.hasText(name) && !especialidadRepository.existByNombre(name) && !medicamentoRepository.existByNombre(name);
     }
 }
+*/

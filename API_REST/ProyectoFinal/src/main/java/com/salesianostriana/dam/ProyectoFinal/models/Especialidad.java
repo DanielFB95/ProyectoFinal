@@ -1,5 +1,9 @@
 package com.salesianostriana.dam.ProyectoFinal.models;
 
+/**
+ * @author
+ *
+ */
 
 import lombok.*;
 

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Validated
 @RestController
@@ -48,7 +49,7 @@ public class MedicamentoController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Especialidad.class))})})
     @GetMapping("/{id}")
-    public ResponseEntity<MedicamentoDto> findOne(@PathVariable Long id,@AuthenticationPrincipal UserEntity userEntity){
+    public ResponseEntity<MedicamentoDto> findOne(@PathVariable Long id, @AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.ok().body(medicamentoService.findOne(id));
     }
 
@@ -70,7 +71,7 @@ public class MedicamentoController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Medicamento> save(@RequestBody MedicamentoDto medicamentoDto,@AuthenticationPrincipal UserEntity userEntity){
+    public ResponseEntity<Medicamento> save(@Valid @RequestBody MedicamentoDto medicamentoDto,@AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.status(HttpStatus.CREATED).body(medicamentoService.save(medicamentoDto));
     }
 

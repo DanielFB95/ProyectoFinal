@@ -1,3 +1,4 @@
+/*
 package com.salesianostriana.dam.ProyectoFinal.validacion.anotaciones;
 
 import com.salesianostriana.dam.ProyectoFinal.validacion.validadores.NameUniqueValidator;
@@ -16,3 +17,4 @@ public @interface NameUnique {
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
+*/

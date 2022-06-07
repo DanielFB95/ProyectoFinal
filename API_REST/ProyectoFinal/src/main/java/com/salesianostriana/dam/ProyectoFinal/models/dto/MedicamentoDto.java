@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.ProyectoFinal.models.dto;
 
-import com.salesianostriana.dam.ProyectoFinal.validacion.anotaciones.NameUnique;
+//import com.salesianostriana.dam.ProyectoFinal.validacion.anotaciones.NameUnique;
 import lombok.*;
 
 @Getter
@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 public class MedicamentoDto {
 
-    @NameUnique
+    //@NameUnique
     private String nombre;
     private String descripcion;
 }

@@ -17563,3 +17563,599 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/P
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
 	... 95 more
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE ESPECIALIDAD (
+       ID BIGINT NOT NULL AUTO_INCREMENT,
+        NOMBRE VARCHAR(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE ESPECIALIDAD (
+       ID BIGINT NOT NULL AUTO_INCREMENT,
+        NOMBRE VARCHAR(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table especialidad (
+       id bigint not null auto_increment,
+        nombre varchar(255),
+        primary key (id)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE MEDICAMENTO (
+       ID BIGINT NOT NULL AUTO_INCREMENT,
+        DESCRIPCION VARCHAR(255),
+        NOMBRE VARCHAR(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE MEDICAMENTO (
+       ID BIGINT NOT NULL AUTO_INCREMENT,
+        DESCRIPCION VARCHAR(255),
+        NOMBRE VARCHAR(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table medicamento (
+       id bigint not null auto_increment,
+        descripcion varchar(255),
+        nombre varchar(255),
+        primary key (id)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE MEDICO (
+       NUMCOLEGIADO VARCHAR(255),
+        ID BINARY(255) NOT NULL,
+        ESPECIALIDAD_ID BIGINT,
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE MEDICO (
+       NUMCOLEGIADO VARCHAR(255),
+        ID BINARY(255) NOT NULL,
+        ESPECIALIDAD_ID BIGINT,
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table medico (
+       numcolegiado varchar(255),
+        id binary(255) not null,
+        especialidad_id bigint,
+        primary key (id)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE PACIENTE (
+       OBSERVACIONES VARCHAR(255),
+        ID BINARY(255) NOT NULL,
+        MEDICO_ID BINARY(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE PACIENTE (
+       OBSERVACIONES VARCHAR(255),
+        ID BINARY(255) NOT NULL,
+        MEDICO_ID BINARY(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table paciente (
+       observaciones varchar(255),
+        id binary(255) not null,
+        medico_id binary(255),
+        primary key (id)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE RECETA (
+       ID BIGINT NOT NULL AUTO_INCREMENT,
+        FECHAFIN DATE,
+        FECHAINICIO DATE,
+        MEDICAMENTO_ID BIGINT,
+        MEDICO_ID BINARY(255),
+        PACIENTE_ID BINARY(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE RECETA (
+       ID BIGINT NOT NULL AUTO_INCREMENT,
+        FECHAFIN DATE,
+        FECHAINICIO DATE,
+        MEDICAMENTO_ID BIGINT,
+        MEDICO_ID BINARY(255),
+        PACIENTE_ID BINARY(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table receta (
+       id bigint not null auto_increment,
+        fechafin date,
+        fechainicio date,
+        medicamento_id bigint,
+        medico_id binary(255),
+        paciente_id binary(255),
+        primary key (id)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE RECETA_DIAS_DE_TOMAS (
+       RECETA_ID BIGINT NOT NULL,
+        DIASDETOMA VARCHAR(255)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE RECETA_DIAS_DE_TOMAS (
+       RECETA_ID BIGINT NOT NULL,
+        DIASDETOMA VARCHAR(255)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table receta_dias_de_tomas (
+       receta_id bigint not null,
+        diasdetoma varchar(255)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE RECETA_MOMENTOS_DE_TOMA (
+       RECETA_ID BIGINT NOT NULL,
+        MOMENTOSDETOMA VARCHAR(255)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE RECETA_MOMENTOS_DE_TOMA (
+       RECETA_ID BIGINT NOT NULL,
+        MOMENTOSDETOMA VARCHAR(255)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table receta_momentos_de_toma (
+       receta_id bigint not null,
+        momentosdetoma varchar(255)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "
+    CREATE TABLE USUARIO (
+       ID BINARY(255) NOT NULL,
+        APELLIDOS VARCHAR(255),
+        AVATAR VARCHAR(255),
+        DIRECCION VARCHAR(255),
+        DNI VARCHAR(255),
+        EMAIL VARCHAR(255),
+        FECHA_NACIMIENTO DATE,
+        NOMBRE VARCHAR(255),
+        PASSWORD VARCHAR(255),
+        ROL VARCHAR(255),
+        TELEFONO VARCHAR(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; se esperaba "identifier"
+Syntax error in SQL statement "
+    CREATE TABLE USUARIO (
+       ID BINARY(255) NOT NULL,
+        APELLIDOS VARCHAR(255),
+        AVATAR VARCHAR(255),
+        DIRECCION VARCHAR(255),
+        DNI VARCHAR(255),
+        EMAIL VARCHAR(255),
+        FECHA_NACIMIENTO DATE,
+        NOMBRE VARCHAR(255),
+        PASSWORD VARCHAR(255),
+        ROL VARCHAR(255),
+        TELEFONO VARCHAR(255),
+        PRIMARY KEY (ID)
+    ) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+
+    create table usuario (
+       id binary(255) not null,
+        apellidos varchar(255),
+        avatar varchar(255),
+        direccion varchar(255),
+        dni varchar(255),
+        email varchar(255),
+        fecha_nacimiento date,
+        nombre varchar(255),
+        password varchar(255),
+        rol varchar(255),
+        telefono varchar(255),
+        primary key (id)
+    ) engine=MyISAM [42001-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+
+    alter table usuario 
+       add constraint UK_5171l57faosmj8myawaucatdw unique (email) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "MEDICO" no encontrada
+Table "MEDICO" not found; SQL statement:
+
+    alter table medico 
+       add constraint FK_MEDICO_ESPECIALIDAD 
+       foreign key (especialidad_id) 
+       references especialidad (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "MEDICO" no encontrada
+Table "MEDICO" not found; SQL statement:
+
+    alter table medico 
+       add constraint FKhwcpg2pf8x1908r4evgekm0cl 
+       foreign key (id) 
+       references usuario (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PACIENTE" no encontrada
+Table "PACIENTE" not found; SQL statement:
+
+    alter table paciente 
+       add constraint FKdb6ggrau4kxv0xcu8n17bmn9u 
+       foreign key (medico_id) 
+       references medico (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PACIENTE" no encontrada
+Table "PACIENTE" not found; SQL statement:
+
+    alter table paciente 
+       add constraint FKnk7alk2a1iathi4h7mqftlbn 
+       foreign key (id) 
+       references usuario (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "RECETA" no encontrada
+Table "RECETA" not found; SQL statement:
+
+    alter table receta 
+       add constraint FK_RECETA_MEDICAMENTO 
+       foreign key (medicamento_id) 
+       references medicamento (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "RECETA" no encontrada
+Table "RECETA" not found; SQL statement:
+
+    alter table receta 
+       add constraint FK_RECETAS_MEDICO 
+       foreign key (medico_id) 
+       references medico (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "RECETA" no encontrada
+Table "RECETA" not found; SQL statement:
+
+    alter table receta 
+       add constraint FK_RECETAS_PACIENTE 
+       foreign key (paciente_id) 
+       references paciente (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "RECETA_DIAS_DE_TOMAS" no encontrada
+Table "RECETA_DIAS_DE_TOMAS" not found; SQL statement:
+
+    alter table receta_dias_de_tomas 
+       add constraint FKf17oroa51wsmidm95j6lciwdr 
+       foreign key (receta_id) 
+       references receta (id) [42102-200]
+2022-06-06 18:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "RECETA_MOMENTOS_DE_TOMA" no encontrada
+Table "RECETA_MOMENTOS_DE_TOMA" not found; SQL statement:
+
+    alter table receta_momentos_de_toma 
+       add constraint FKhms4ic275xntitc17mqau2t2n 
+       foreign key (receta_id) 
+       references receta (id) [42102-200]
+2022-06-06 18:26:48 database: flush
+org.h2.message.DbException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2877)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:481)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:402)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3579)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:170)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:103)
+	at org.h2.engine.Database.getPageStore(Database.java:2659)
+	at org.h2.engine.Database.open(Database.java:675)
+	at org.h2.engine.Database.openDatabase(Database.java:307)
+	at org.h2.engine.Database.<init>(Database.java:301)
+	at org.h2.engine.Engine.openSession(Engine.java:74)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(FileLockTable.java:229)
+	at java.base/sun.nio.ch.FileLockTable.add(FileLockTable.java:123)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1297)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1191)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more
+2022-06-06 18:26:48 database: flush
+org.h2.message.DbException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2877)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:481)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:402)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3579)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:170)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:103)
+	at org.h2.engine.Database.getPageStore(Database.java:2659)
+	at org.h2.engine.Database.open(Database.java:675)
+	at org.h2.engine.Database.openDatabase(Database.java:307)
+	at org.h2.engine.Database.<init>(Database.java:301)
+	at org.h2.engine.Engine.openSession(Engine.java:74)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(FileLockTable.java:229)
+	at java.base/sun.nio.ch.FileLockTable.add(FileLockTable.java:123)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1297)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1191)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more
+2022-06-06 18:30:20 database: flush
+org.h2.message.DbException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2877)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:481)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:402)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3579)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:170)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:103)
+	at org.h2.engine.Database.getPageStore(Database.java:2659)
+	at org.h2.engine.Database.open(Database.java:675)
+	at org.h2.engine.Database.openDatabase(Database.java:307)
+	at org.h2.engine.Database.<init>(Database.java:301)
+	at org.h2.engine.Engine.openSession(Engine.java:74)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(FileLockTable.java:229)
+	at java.base/sun.nio.ch.FileLockTable.add(FileLockTable.java:123)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1297)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1191)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more
+2022-06-06 18:30:20 database: flush
+org.h2.message.DbException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2877)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:481)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:402)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3579)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:170)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:103)
+	at org.h2.engine.Database.getPageStore(Database.java:2659)
+	at org.h2.engine.Database.open(Database.java:675)
+	at org.h2.engine.Database.openDatabase(Database.java:307)
+	at org.h2.engine.Database.<init>(Database.java:301)
+	at org.h2.engine.Engine.openSession(Engine.java:74)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(FileLockTable.java:229)
+	at java.base/sun.nio.ch.FileLockTable.add(FileLockTable.java:123)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1297)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1191)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more
+2022-06-06 18:33:18 database: flush
+org.h2.message.DbException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2877)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:481)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:402)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3579)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:170)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:103)
+	at org.h2.engine.Database.getPageStore(Database.java:2659)
+	at org.h2.engine.Database.open(Database.java:675)
+	at org.h2.engine.Database.openDatabase(Database.java:307)
+	at org.h2.engine.Database.<init>(Database.java:301)
+	at org.h2.engine.Engine.openSession(Engine.java:74)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(FileLockTable.java:229)
+	at java.base/sun.nio.ch.FileLockTable.add(FileLockTable.java:123)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1297)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1191)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more
+2022-06-06 18:33:18 database: flush
+org.h2.message.DbException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2877)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:481)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:402)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3579)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:170)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:103)
+	at org.h2.engine.Database.getPageStore(Database.java:2659)
+	at org.h2.engine.Database.open(Database.java:675)
+	at org.h2.engine.Database.openDatabase(Database.java:307)
+	at org.h2.engine.Database.<init>(Database.java:301)
+	at org.h2.engine.Engine.openSession(Engine.java:74)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]" [50000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:E:/Desktop/ProyectoFinal/API_REST/ProyectoFinal/db/basededatos.mv.db [1.4.200/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(FileLockTable.java:229)
+	at java.base/sun.nio.ch.FileLockTable.add(FileLockTable.java:123)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1297)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1191)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more

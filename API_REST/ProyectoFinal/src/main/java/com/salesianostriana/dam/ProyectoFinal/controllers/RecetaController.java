@@ -20,12 +20,15 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/receta")
@@ -52,7 +55,7 @@ public class RecetaController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Receta.class))})})
     @PostMapping("/")
-    public ResponseEntity<GetRecetaDto> save(@RequestBody CreateRecetaDto createRecetaDto, @AuthenticationPrincipal UserEntity userEntity){
+    public ResponseEntity<GetRecetaDto> save(@Valid @RequestBody CreateRecetaDto createRecetaDto, @AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.status(HttpStatus.CREATED).body(recetaDtoConverter.recetaToRecetaDto(recetaService.save(createRecetaDto,userEntity)));
     }
 
