@@ -2,6 +2,10 @@ package com.salesianostriana.dam.ProyectoFinal.models.dto;
 
 import lombok.*;
 
+/**
+ * Esta clase define un dto para la obtención y creación de un Fichero
+ * @author Daniel Fernández
+ */
 @Builder
 @Getter
 @Setter

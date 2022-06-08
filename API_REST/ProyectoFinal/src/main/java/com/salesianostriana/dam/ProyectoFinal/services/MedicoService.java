@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * Esta clase define un servicio para la entidad Medico
+ * @author Daniel Fernández
+ */
 @Service
 @RequiredArgsConstructor
 public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
@@ -23,6 +27,12 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
     private final MedicoRepository medicoRepository;
     private final MedicoDtoConverter medicoDtoConverter;
 
+    /**
+     * Este método edita un médico
+     * @param createMedicoDto
+     * @param id
+     * @return un objeto del tipo GetMedicoDto
+     */
     public GetMedicoDto edit (CreateMedicoDto createMedicoDto, UUID id){
 
         return medicoDtoConverter.medicoToMedicoDto(
@@ -40,14 +50,28 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
                 }).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico")));
     }
 
+    /**
+     * Este método busca y muestra un médico por su id
+     * @param id
+     * @return un objeto del tipo GetMedicoDto
+     */
     public GetMedicoDto findOne(UUID id){
         return medicoDtoConverter.medicoToMedicoDto(medicoRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico")));
     }
 
+    /**
+     * Este método devuelve una lista de médicos paginada
+     * @param pageable
+     * @return un objeto del tipo Page<Medico>
+     */
     public Page<Medico> findAll(Pageable pageable){
         return medicoRepository.findAll(pageable);
     }
 
+    /**
+     * Este método se encarga de borrar un médico por su id
+     * @param id
+     */
     public void delete(UUID id){
 
         Medico medico = medicoRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));

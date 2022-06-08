@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Esta clase define un dto para la obtención de un Medico
+ * @author Daniel Fernández
+ */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder

@@ -11,6 +11,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta clase define la entidad Receta
+ * @author Daniel Fernández
+ */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder

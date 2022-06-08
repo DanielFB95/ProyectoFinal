@@ -5,6 +5,11 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
+/**
+ * Esta clase define la entidad Medicamento
+ * @author Daniel Fernández
+ */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder

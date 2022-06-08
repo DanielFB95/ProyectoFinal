@@ -7,6 +7,10 @@ import lombok.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+/**
+ * Esta clase define un dto para la creación de Pacientes
+ * @author Daniel Fernández
+ */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder

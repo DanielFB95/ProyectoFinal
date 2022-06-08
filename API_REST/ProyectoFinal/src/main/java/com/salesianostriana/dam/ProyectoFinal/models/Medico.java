@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta clase define la entidad Medico que hereda de UserEntity
+ * @author Daniel Fernández
+ */
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Entity

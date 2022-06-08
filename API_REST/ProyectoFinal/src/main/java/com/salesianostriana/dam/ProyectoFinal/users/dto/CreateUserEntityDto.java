@@ -6,6 +6,10 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Esta clase define un dto para la creación de un UserEntity
+ * @author Daniel Fernández
+ */
 @Getter
 @Setter
 @NoArgsConstructor @AllArgsConstructor

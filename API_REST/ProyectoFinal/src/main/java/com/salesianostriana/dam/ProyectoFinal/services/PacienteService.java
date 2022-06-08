@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
+/**
+ * Esta clase define un servicio para la entidad Paciente
+ * @author Daniel Fernández
+ */
 @Service
 @RequiredArgsConstructor
 public class PacienteService extends BaseService<Paciente,UUID,PacienteRepository> {
@@ -25,6 +28,12 @@ public class PacienteService extends BaseService<Paciente,UUID,PacienteRepositor
     private final PacienteDtoConverter pacienteDtoConverter;
     private final PacienteRepository pacienteRepository;
 
+    /**
+     * Este método edita un paciente
+     * @param createPacienteDto
+     * @param id
+     * @return un objeto del tipo GetPacienteDto
+     */
     public GetPacienteDto edit (CreatePacienteDto createPacienteDto, UUID id){
 
         return pacienteDtoConverter.pacienteToGetPacienteDto(pacienteRepository.findById(id).map(x -> {
@@ -41,14 +50,28 @@ public class PacienteService extends BaseService<Paciente,UUID,PacienteRepositor
 
     }
 
+    /**
+     * Este método busca y muestra un paciente por su id
+     * @param id
+     * @return un objeto del tipo GetPacienteDto
+     */
     public GetPacienteDto findOne(UUID id){
         return pacienteDtoConverter.pacienteToGetPacienteDto(pacienteRepository.findById(id).orElseThrow(()-> new NotFoundException("Paciente no encontrado")));
     }
 
+    /**
+     * Este método devuelve una lista de pacientes paginada
+     * @param pageable
+     * @return un objeto del tipo Page<Paciente>
+     */
     public Page<Paciente> findAll(Pageable pageable){
         return pacienteRepository.findAll(pageable);
     }
 
+    /**
+     * Este método borra un paciente por su id
+     * @param id
+     */
     public void delete(UUID id){
         pacienteRepository.deleteById(id);
     }

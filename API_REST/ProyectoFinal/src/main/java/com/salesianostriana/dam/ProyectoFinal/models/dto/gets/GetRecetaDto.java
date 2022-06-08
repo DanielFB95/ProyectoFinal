@@ -10,6 +10,10 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Esta clase define un dto para la obtención de una Receta
+ * @author Daniel Fernández
+ */
 @Getter
 @Setter
 @NoArgsConstructor

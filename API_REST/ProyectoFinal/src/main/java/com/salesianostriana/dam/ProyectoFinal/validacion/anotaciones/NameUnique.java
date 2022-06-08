@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface NameUnique {
 
-    String message() default "{name.unique}";
+    String message() default "El nombre debe ser único";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

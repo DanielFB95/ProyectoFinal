@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Esta clase define un dto para la creación de Recetas
+ * @author Daniel Fernández
+ */
 @Getter
 @Setter
 @NoArgsConstructor

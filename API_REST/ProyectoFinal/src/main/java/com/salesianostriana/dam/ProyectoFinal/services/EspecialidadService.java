@@ -15,7 +15,10 @@ import org.webjars.NotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Esta clase define un servicio para la entidad Especilidad
+ * @author Daniel Fernández
+ */
 @Service
 @RequiredArgsConstructor
 public class EspecialidadService extends BaseService<Especialidad,Long,EspecialidadRepository> {
@@ -23,12 +26,22 @@ public class EspecialidadService extends BaseService<Especialidad,Long,Especiali
     private final EspecialidadRepository especialidadRepository;
     private final EspecialidadDtoConverter especialidadDtoConverter;
 
-
+    /**
+     * Este método genera una nueva especilidad
+     * @param createEspecialidadDto
+     * @return un objeto del tipo Especilidad
+     */
     public Especialidad save(CreateEspecialidadDto createEspecialidadDto) {
 
         return especialidadRepository.save(especialidadDtoConverter.createEspecialidadDtoToEspecialidad(createEspecialidadDto));
     }
 
+    /**
+     * Este método edita una especialidad
+     * @param id
+     * @param nuevaEspecialidad
+     * @return un objeto del tipo Especialidad
+     */
     public Especialidad edit(Long id, CreateEspecialidadDto nuevaEspecialidad ){
 
         return especialidadRepository.findById(id).map(x -> {
@@ -39,16 +52,30 @@ public class EspecialidadService extends BaseService<Especialidad,Long,Especiali
 
     }
 
+    /**
+     * Este método borra una especialidad por su id
+     * @param id
+     */
     public void delete(Long id){
         especialidadRepository.deleteById(id);
     }
 
+    /**
+     * Este método busca y muestra una especialidad por su id
+     * @param id
+     * @return un objeto del tipo GetEspecialidadDto
+     */
     public GetEspecialidadDto findOne(Long id){
         return especialidadDtoConverter.especialidadToGetEspecialidadDto(
                 especialidadRepository.findById(id)
                         .orElseThrow(() -> new NotFoundException("La especialidad con id: "+ id + " no se ha encontrado.")));
     }
 
+    /**
+     * Este método devuelve una lista con todas las especialidades paginadas
+     * @param pageable
+     * @return un objeto de tipo Page<Especialidad>
+     */
     public Page<Especialidad> findAll(Pageable pageable){
         return especialidadRepository.findAll(pageable);}
 }

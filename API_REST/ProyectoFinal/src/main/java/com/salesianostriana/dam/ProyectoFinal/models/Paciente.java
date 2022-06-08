@@ -7,6 +7,10 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Esta clase define la entidad Paciente que hereda de UserEntity
+ * @author Daniel Fernández
+ */
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 @Entity

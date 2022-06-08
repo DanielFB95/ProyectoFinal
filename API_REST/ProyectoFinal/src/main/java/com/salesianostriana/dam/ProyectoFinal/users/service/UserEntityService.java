@@ -34,6 +34,10 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.UUID;
 
+/**
+ * Esta clase define un servicio para la entidad UserEntity
+ * @author Daniel Fernández
+ */
 @Service("userDetailsService")
 @RequiredArgsConstructor
 public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityRepository> implements UserDetailsService {
@@ -45,12 +49,23 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
     private final ImageScalerService imageScaler;
 
 
+    /**
+     * Este método carga un usuario por su email
+     * @param email
+     * @return un objeto del tipo UserDetails
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return this.repository.findFirstByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(email + " no encontrado."));
     }
 
+    /**
+     * Este método genera un nuevo Administrador
+     * @param userEntity
+     * @return un objeto del tipo UserEntity
+     */
     public UserEntity saveAdmin (CreateUserEntityDto userEntity){
 
         if(userEntity.getPassword().contentEquals(userEntity.getPassword2())){
@@ -73,6 +88,13 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
         }
     }
 
+    /**
+     * Este método genera un nuevo médico
+     * @param newUser
+     * @param avatar
+     * @return un objeto del tipo UserEntity
+     * @throws Exception , StorageException
+     */
     public UserEntity saveMedico (CreateMedicoDto newUser, MultipartFile avatar) throws Exception{
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
@@ -121,6 +143,14 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
         }
     }
 
+    /**
+     * Este método genera un nuevo paciente
+     * @param newUser
+     * @param userEntity
+     * @param avatar
+     * @return un objeto del tipo UserEntity
+     * @throws Exception, StorageException
+     */
     public UserEntity savePaciente (CreatePacienteDto newUser, UserEntity userEntity, MultipartFile avatar) throws Exception{
 
 

@@ -23,6 +23,11 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+
+/**
+ * Esta clase define un servicio para la entidad Receta
+ * @author Daniel Fernández
+ */
 @Service
 @RequiredArgsConstructor
 public class RecetaService extends BaseService<Receta,Long,RecetasRepository> {
@@ -33,6 +38,12 @@ public class RecetaService extends BaseService<Receta,Long,RecetasRepository> {
     private final MedicamentoRepository medicamentoRepository;
     private final RecetaDtoConverter recetaDtoConverter;
 
+    /**
+     * Este método genera una nueva receta
+     * @param createRecetaDto
+     * @param userEntityMedico
+     * @return un objeto del tipo Receta
+     */
     public Receta save(CreateRecetaDto createRecetaDto, UserEntity userEntityMedico){
         Paciente paciente = pacienteRepository.findById(createRecetaDto.getIdPaciente()).orElseThrow(()-> new NotFoundException("No se ha encontrado el paciente"));
         Medico medico = medicoRepository.findById(userEntityMedico.getId()).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico."));
@@ -52,19 +63,39 @@ public class RecetaService extends BaseService<Receta,Long,RecetasRepository> {
         return receta;
     }
 
+    /**
+     * Este método busca y muestra una receta por su id
+     * @param id
+     * @return un objeto del tipo GetRecetaDto
+     */
     public GetRecetaDto findOne(Long id){
         return recetaDtoConverter.recetaToRecetaDto(recetasRepository.findById(id)
                 .orElseThrow(()-> new NotFoundException("No se ha encontrado la receta")));
     }
 
+    /**
+     * Este método devuelve una lista de recetas paginada
+     * @param pageable
+     * @return un objeto del tipo Page<Receta>
+     */
     public Page<Receta> findAll(Pageable pageable){
         return recetasRepository.findAll(pageable);
     }
 
+    /**
+     * Este método borra una receta por su id
+     * @param id
+     */
     public void delete(Long id){
         recetasRepository.deleteById(id);
     }
 
+    /**
+     * Este método edita una receta
+     * @param createRecetaDto
+     * @param id
+     * @return
+     */
     public GetRecetaDto edit(CreateRecetaDto createRecetaDto, Long id){
 
         return recetaDtoConverter.recetaToRecetaDto(

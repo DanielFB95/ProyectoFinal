@@ -9,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.webjars.NotFoundException;
 
+/**
+ * Esta clase define un convertidor entre dtos de la entidad Medico
+ * @author Daniel Fernández
+ */
 @Component
 @RequiredArgsConstructor
 public class MedicoDtoConverter {
@@ -16,6 +20,11 @@ public class MedicoDtoConverter {
     private final EspecialidadDtoConverter especialidadDtoConverter;
     private final EspecialidadRepository especialidadRepository;
 
+    /**
+     *
+     * @param createMedicoDto
+     * @return un objeto del tipo Medico
+     */
     public Medico createMedicoDtoToMedico (CreateMedicoDto createMedicoDto){
         Medico medico = Medico.builder()
                 .nombre(createMedicoDto.getNombre())
@@ -31,6 +40,11 @@ public class MedicoDtoConverter {
         return medico;
     }
 
+    /**
+     *
+     * @param medico
+     * @return un objeto del tipo GetMedicoDto
+     */
     public GetMedicoDto medicoToMedicoDto (Medico medico){
 
         if(medico.getEspecialidad() == null){

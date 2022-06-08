@@ -9,6 +9,10 @@ import com.salesianostriana.dam.ProyectoFinal.repositories.PacienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Esta clase define un convertidor entre dtos de la entidad Receta
+ * @author Daniel Fernández
+ */
 @Component
 @RequiredArgsConstructor
 public class RecetaDtoConverter {
@@ -16,6 +20,11 @@ public class RecetaDtoConverter {
     private final MedicoDtoConverter medicoDtoConverter;
     private final PacienteDtoConverter pacienteDtoConverter;
 
+    /**
+     *
+     * @param createRecetaDto
+     * @return un objeto del tipo Receta
+     */
     public Receta createRecetaDtoToReceta(CreateRecetaDto createRecetaDto){
 
         Receta receta = Receta.builder()
@@ -28,6 +37,11 @@ public class RecetaDtoConverter {
         return receta;
     }
 
+    /**
+     *
+     * @param receta
+     * @return un objeto del tipo GetRecetaDto
+     */
     public GetRecetaDto recetaToRecetaDto (Receta receta) {
         return GetRecetaDto.builder()
                 .fechaInicio(receta.getFechaInicio())

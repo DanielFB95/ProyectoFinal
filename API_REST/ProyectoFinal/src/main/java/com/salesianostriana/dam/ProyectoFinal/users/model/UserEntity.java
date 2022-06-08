@@ -17,6 +17,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Esta clase define la entidad UserEntity
+ * @author Daniel Fernández
+ */
 @Entity
 @Getter
 @Setter

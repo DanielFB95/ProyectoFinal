@@ -6,12 +6,21 @@ import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetPacienteDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Esta clase define un convertidor entre dtos de la entidad Paciente
+ * @author Daniel Fernández
+ */
 @Component
 @RequiredArgsConstructor
 public class PacienteDtoConverter {
 
     private final MedicoDtoConverter medicoDtoConverter;
 
+    /**
+     *
+     * @param createPacienteDto
+     * @return un objeto del tipo Paciente
+     */
     public Paciente createPacienteDtoToPaciente (CreatePacienteDto createPacienteDto){
 
         Paciente paciente = Paciente.builder()
@@ -29,6 +38,11 @@ public class PacienteDtoConverter {
         return paciente;
     }
 
+    /**
+     *
+     * @param paciente
+     * @return un objeto del tipo GetPacienteDto
+     */
     public GetPacienteDto pacienteToGetPacienteDto(Paciente paciente){
 
         GetPacienteDto getPacienteDto = GetPacienteDto.builder()

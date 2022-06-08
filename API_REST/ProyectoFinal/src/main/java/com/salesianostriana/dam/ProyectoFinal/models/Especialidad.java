@@ -1,14 +1,13 @@
 package com.salesianostriana.dam.ProyectoFinal.models;
 
-/**
- * @author
- *
- */
-
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
+
+/**
+ * Esta clase define la entidad Especiaidad
+ * @author Daniel Fernández
+ */
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
