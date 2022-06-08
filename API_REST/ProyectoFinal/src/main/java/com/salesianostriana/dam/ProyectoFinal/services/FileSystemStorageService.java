@@ -1,10 +1,12 @@
-/*
 package com.salesianostriana.dam.ProyectoFinal.services;
 
 import com.salesianostriana.dam.ProyectoFinal.config.StorageProperties;
 import com.salesianostriana.dam.ProyectoFinal.errors.exceptions.FileNotFoundException;
 import com.salesianostriana.dam.ProyectoFinal.errors.exceptions.StorageException;
+import com.salesianostriana.dam.ProyectoFinal.errors.exceptions.WrongFormatException;
 import com.salesianostriana.dam.ProyectoFinal.utils.MediaTypeUrlResource;
+import io.github.techgnious.exception.VideoException;
+import lombok.RequiredArgsConstructor;
 import org.imgscalr.Scalr;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -24,10 +26,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
-public class FileSystemStorageService {
+public class FileSystemStorageService implements StorageService{
 
     private final Path rootLocation;
 
@@ -48,11 +51,13 @@ public class FileSystemStorageService {
     public String store(MultipartFile file) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         String newFilename = "";
+        List<String> validMimeFormat = List.of("png", "jpg", "jpeg" , "avi", "mp4");
+
         try {
             // Si el fichero está vacío, excepción al canto
             if (file.isEmpty())
                 throw new StorageException("El fichero subido está vacío");
-
+            if(!validMimeFormat.contains(StringUtils.getFilenameExtension(filename))) throw new WrongFormatException("Hubo un error. El formato no es válido.");
             newFilename = filename;
             while(Files.exists(rootLocation.resolve(newFilename))) {
                 // Tratamos de generar uno nuevo
@@ -134,6 +139,16 @@ public class FileSystemStorageService {
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }
 
+    @Override
+    public BufferedImage simpleResizeImage(BufferedImage originalImage, int targetWidth) throws Exception {
+        return null;
+    }
+
+    @Override
+    public byte[] resizeVideo(MultipartFile file, int width, int height, String mimeFormat) throws IOException, VideoException {
+        return new byte[0];
+    }
+
     public BufferedImage scale(String filename){
 
         try{
@@ -164,4 +179,3 @@ public class FileSystemStorageService {
     }
 
 }
-*/

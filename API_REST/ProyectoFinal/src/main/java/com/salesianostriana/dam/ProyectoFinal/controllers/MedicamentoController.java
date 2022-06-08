@@ -53,6 +53,20 @@ public class MedicamentoController {
         return ResponseEntity.ok().body(medicamentoService.findOne(id));
     }
 
+    @Operation(summary = "Muestra todas los medicamentos.")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200",
+            description = "Se han encontrado todos los medicamentos.",
+            content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class))
+            }),
+            @ApiResponse(responseCode = "404",
+                    description = "No se han encontrado medicamentos",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Medicamento.class
+                                    ))
+                    })})
     @GetMapping("/")
     public ResponseEntity<Page<MedicamentoDto>> findAll(@AuthenticationPrincipal UserEntity userEntity, @PageableDefault(size = 10, page = 0) Pageable pageable, HttpServletRequest request){
 
@@ -70,15 +84,73 @@ public class MedicamentoController {
         }
     }
 
+    @Operation(summary = "Registra un nuevo medicamento")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200",
+            description = "Se ha creado el medicamento.",
+            content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class))
+            }),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha creado el medicamento.",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Medicamento.class
+                                    ))
+                    })
+            ,
+            @ApiResponse(responseCode = "401",
+                    description = "No tiene permiso para realizar esta acción.",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class))})})
+
     @PostMapping("/")
     public ResponseEntity<Medicamento> save(@Valid @RequestBody MedicamentoDto medicamentoDto,@AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.status(HttpStatus.CREATED).body(medicamentoService.save(medicamentoDto));
     }
 
+    @Operation(summary = "Editar un medicamento.")
+    @ApiResponses( value = {@ApiResponse(responseCode = "200",
+            description = "Se ha editado el medicamento.",
+            content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class))
+            }),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha podido editar el medicamento.",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Medicamento.class
+                                    ))
+                    })
+            ,
+            @ApiResponse(responseCode = "401",
+                    description = "No tiene permiso para realizar esta acción.",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class))})})
+
     @PutMapping("/{id}")
     public ResponseEntity<Medicamento> edit(@PathVariable Long id, @RequestBody MedicamentoDto medicamentoDto,@AuthenticationPrincipal UserEntity userEntity){
         return ResponseEntity.of(medicamentoService.edit(id, medicamentoDto));
     }
+
+    @Operation(summary = "Borra un medicamento.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204",
+                    description = "Se ha borrado el medicamento.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class))}),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado el medicamento",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class
+                            ))
+                    })
+            ,
+            @ApiResponse(responseCode = "401",
+                    description = "No tiene permiso para realizar esta acción.",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medicamento.class))})})
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id,@AuthenticationPrincipal UserEntity userEntity){

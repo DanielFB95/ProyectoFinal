@@ -1,4 +1,3 @@
-/*
 package com.salesianostriana.dam.ProyectoFinal.utils;
 
 import com.salesianostriana.dam.ProyectoFinal.errors.exceptions.StorageException;
@@ -41,4 +40,3 @@ public class MediaTypeUrlResource extends UrlResource {
         }
     }
 }
-*/

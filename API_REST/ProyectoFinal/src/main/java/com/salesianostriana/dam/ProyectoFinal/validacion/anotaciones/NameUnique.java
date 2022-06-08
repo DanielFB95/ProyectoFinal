@@ -1,4 +1,3 @@
-/*
 package com.salesianostriana.dam.ProyectoFinal.validacion.anotaciones;
 
 import com.salesianostriana.dam.ProyectoFinal.validacion.validadores.NameUniqueValidator;
@@ -13,8 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface NameUnique {
 
-    String message() default "El nombre debe ser único";
+    String message() default "{name.unique}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
-*/

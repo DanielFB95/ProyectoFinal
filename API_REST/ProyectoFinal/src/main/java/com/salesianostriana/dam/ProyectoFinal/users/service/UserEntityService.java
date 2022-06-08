@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.ProyectoFinal.users.service;
 
+import com.salesianostriana.dam.ProyectoFinal.errors.exceptions.StorageException;
 import com.salesianostriana.dam.ProyectoFinal.models.Especialidad;
 import com.salesianostriana.dam.ProyectoFinal.models.Medico;
 import com.salesianostriana.dam.ProyectoFinal.models.Paciente;
@@ -7,6 +8,9 @@ import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreatePacienteDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.EspecialidadRepository;
 import com.salesianostriana.dam.ProyectoFinal.repositories.MedicoRepository;
+import com.salesianostriana.dam.ProyectoFinal.services.FileSystemStorageService;
+import com.salesianostriana.dam.ProyectoFinal.services.ImageScalerService;
+import com.salesianostriana.dam.ProyectoFinal.services.StorageService;
 import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import com.salesianostriana.dam.ProyectoFinal.users.dto.CreateUserEntityDto;
 import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
@@ -21,6 +25,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.webjars.NotFoundException;
 
 import javax.imageio.ImageIO;
@@ -36,8 +41,8 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
     private final PasswordEncoder passwordEncoder;
     private final EspecialidadRepository especialidadRepository;
     private final MedicoRepository medicoRepository;
-/*    private final FileSystemStorageService storageService;
-    private final ImageScalerService imageScaler;*/
+    private final StorageService storageService;
+    private final ImageScalerService imageScaler;
 
 
     @Override
@@ -68,11 +73,11 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
         }
     }
 
-    public UserEntity saveMedico (CreateMedicoDto newUser/* MultipartFile avatar*/) throws Exception{
+    public UserEntity saveMedico (CreateMedicoDto newUser, MultipartFile avatar) throws Exception{
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
 
-          /*  String uri = null;
+            String uri = null;
 
             if(!avatar.isEmpty()){
                 String filename = storageService.store(avatar);
@@ -83,8 +88,14 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
                 OutputStream out = Files.newOutputStream(storageService.load(filename));
                 ImageIO.write(resized,ext,out);
 
-                uri = storageService.convertToUri(filename);
-            }*/
+                uri = ServletUriComponentsBuilder
+                        .fromCurrentContextPath()
+                        .path("/download/")
+                        .path(filename)
+                        .toUriString();
+            }else{
+                throw new StorageException("No se ha podido guardar la imagen");
+            }
 
             Especialidad especialidad = especialidadRepository.findById(newUser.getEspecialidad()).orElseThrow(() -> new RuntimeException());
 
@@ -93,6 +104,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
                     .nombre(newUser.getNombre())
                     .apellidos(newUser.getApellidos())
                     .fechaNacimiento(newUser.getFechaNacimiento())
+                    .avatar(uri)
                     .email(newUser.getEmail())
                     .telefono(newUser.getTelefono())
                     .dni(newUser.getDni())
@@ -109,15 +121,36 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
         }
     }
 
-    public UserEntity savePaciente (CreatePacienteDto newUser, UserEntity userEntity){
+    public UserEntity savePaciente (CreatePacienteDto newUser, UserEntity userEntity, MultipartFile avatar) throws Exception{
 
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
+
+            String uri = null;
+
+            if(!avatar.isEmpty()){
+                String filename = storageService.store(avatar);
+                String ext = StringUtils.getFilenameExtension(filename);
+
+                BufferedImage originalImage = ImageIO.read(avatar.getInputStream());
+                BufferedImage resized = imageScaler.simpleResizeImage(originalImage,128);
+                OutputStream out = Files.newOutputStream(storageService.load(filename));
+                ImageIO.write(resized,ext,out);
+
+                uri = ServletUriComponentsBuilder
+                        .fromCurrentContextPath()
+                        .path("/download/")
+                        .path(filename)
+                        .toUriString();
+            }else{
+                throw new StorageException("No se ha podido guardar la imagen");
+            }
             Medico medico = medicoRepository.findById(userEntity.getId()).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));
             Paciente paciente = Paciente.builder()
                     .password(passwordEncoder.encode(newUser.getPassword()))
                     .nombre(newUser.getNombre())
                     .apellidos(newUser.getApellidos())
+                    .avatar(uri)
                     .fechaNacimiento(newUser.getFechaNacimiento())
                     .email(newUser.getEmail())
                     .telefono(newUser.getTelefono())

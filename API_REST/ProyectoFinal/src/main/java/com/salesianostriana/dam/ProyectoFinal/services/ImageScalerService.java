@@ -1,4 +1,3 @@
-/*
 package com.salesianostriana.dam.ProyectoFinal.services;
 
 import io.github.techgnious.IVCompressor;
@@ -33,4 +32,3 @@ public class ImageScalerService {
     }
 
 }
-*/

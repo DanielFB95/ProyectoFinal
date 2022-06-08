@@ -77,9 +77,9 @@ public class UserEntityController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Medico.class))})})
     @PostMapping("/medico")
-    public ResponseEntity<GetMedicoDto> nuevoMedico(@Valid @RequestBody CreateMedicoDto nuevoMedico, @AuthenticationPrincipal UserEntity userEntity/*, @RequestPart("file")MultipartFile file*/) throws Exception {
+    public ResponseEntity<GetMedicoDto> nuevoMedico(@Valid @RequestPart("body") CreateMedicoDto nuevoMedico, @AuthenticationPrincipal UserEntity userEntity, @RequestPart("file")MultipartFile avatar) throws Exception {
 
-        Medico user = (Medico) userEntityService.saveMedico(nuevoMedico /*file*/);
+        Medico user = (Medico) userEntityService.saveMedico(nuevoMedico ,avatar);
 
         if (user == null) {
             return ResponseEntity.badRequest().build();
@@ -105,9 +105,9 @@ public class UserEntityController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Paciente.class))})})
     @PostMapping("/paciente")
-    public ResponseEntity<GetPacienteDto> nuevoPaciente(@Valid @RequestBody CreatePacienteDto nuevoPaciente, @AuthenticationPrincipal UserEntity userEntity) {
+    public ResponseEntity<GetPacienteDto> nuevoPaciente(@Valid @RequestPart("body") CreatePacienteDto nuevoPaciente,@RequestPart("file") MultipartFile avatar ,@AuthenticationPrincipal UserEntity userEntity) throws Exception {
 
-        Paciente user = (Paciente) userEntityService.savePaciente(nuevoPaciente, userEntity);
+        Paciente user = (Paciente) userEntityService.savePaciente(nuevoPaciente, userEntity, avatar);
 
         if (user == null) {
             return ResponseEntity.badRequest().build();

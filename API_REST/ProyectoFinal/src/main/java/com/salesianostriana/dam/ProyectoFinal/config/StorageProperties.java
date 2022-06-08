@@ -1,4 +1,3 @@
-/*
 package com.salesianostriana.dam.ProyectoFinal.config;
 
 import lombok.Getter;
@@ -13,4 +12,3 @@ public class StorageProperties {
     private String location;
 
 }
-*/

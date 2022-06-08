@@ -36,6 +36,7 @@ public class PacienteDtoConverter {
                 .nombre(paciente.getNombre())
                 .apellidos(paciente.getApellidos())
                 .fechaNacimiento(paciente.getFechaNacimiento())
+                .avatar(paciente.getAvatar())
                 .email(paciente.getEmail())
                 .telefono(paciente.getTelefono())
                 .dni(paciente.getDni())

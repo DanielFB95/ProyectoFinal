@@ -17,6 +17,7 @@ public class GetPacienteDto {
     private String nombre;
     private String apellidos;
     private LocalDate fechaNacimiento;
+    private String avatar;
     private String email;
     private String telefono;
     private String dni;
