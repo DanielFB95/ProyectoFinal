@@ -32,6 +32,7 @@ public class PacienteService extends BaseService<Paciente,UUID,PacienteRepositor
     private final PacienteDtoConverter pacienteDtoConverter;
     private final PacienteRepository pacienteRepository;
     private final RecetasRepository recetasRepository;
+    private final RecetaService recetaService;
 
     /**
      * Este método edita un paciente
@@ -78,6 +79,12 @@ public class PacienteService extends BaseService<Paciente,UUID,PacienteRepositor
      * @param id
      */
     public void delete(UUID id){
+        Paciente paciente = pacienteRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado el paciente"));
+        List<Receta> recetas = recetasRepository.recetasDeUnPaciente(id).stream().map(x->{
+            recetaService.delete(x.getId());
+            return x;
+        }).collect(Collectors.toList());
+        paciente.removeMedico();
         pacienteRepository.deleteById(id);
     }
 

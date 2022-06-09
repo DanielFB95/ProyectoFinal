@@ -87,6 +87,10 @@ public class RecetaService extends BaseService<Receta,Long,RecetasRepository> {
      * @param id
      */
     public void delete(Long id){
+        Receta receta = recetasRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado la receta"));
+        receta.deleteMedico();
+        receta.deleteMedicamento();
+        receta.deletePaciente();
         recetasRepository.deleteById(id);
     }
 

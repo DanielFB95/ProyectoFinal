@@ -28,6 +28,7 @@ public class MedicamentoService extends BaseService<Medicamento,Long,Medicamento
     private final MedicamentoRepository medicamentoRepository;
     private final MedicamentoDtoConverter medicamentoDtoConverter;
     private final RecetasRepository recetasRepository;
+    private final RecetaService recetaService;
 
     /**
      * Este método genera un nuevo medicamento
@@ -79,10 +80,12 @@ public class MedicamentoService extends BaseService<Medicamento,Long,Medicamento
      */
     public void delete(Long id){
 
-        List<Receta> recetas = recetasRepository.recetasQueContienenUnMedicamento(id).stream().map(x -> {
-           x.deleteMedicamento();
-           return x;
-        }).collect(Collectors.toList());
+        List<Receta> recetas = recetasRepository.recetasQueContienenUnMedicamento(id)
+                .stream()
+                .map(x-> {
+                    recetaService.delete(x.getId());
+                    return x;
+                }).collect(Collectors.toList());
         medicamentoRepository.deleteById(id);
     }
 

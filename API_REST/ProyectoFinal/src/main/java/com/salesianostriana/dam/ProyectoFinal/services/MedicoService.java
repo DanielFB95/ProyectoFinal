@@ -2,6 +2,7 @@ package com.salesianostriana.dam.ProyectoFinal.services;
 
 import com.salesianostriana.dam.ProyectoFinal.models.Medico;
 import com.salesianostriana.dam.ProyectoFinal.models.Paciente;
+import com.salesianostriana.dam.ProyectoFinal.models.Receta;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.MedicoDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetMedicoDto;
@@ -30,7 +31,9 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
     private final MedicoRepository medicoRepository;
     private final MedicoDtoConverter medicoDtoConverter;
     private final PacienteRepository pacienteRepository;
+    private final PacienteService pacienteService;
     private final RecetasRepository recetasRepository;
+    private final RecetaService recetaService;
 
     /**
      * Este método edita un médico
@@ -80,17 +83,17 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
     public void delete(UUID id){
 
         Medico medico = medicoRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));
+        List<Receta> recetas = recetasRepository.recetasDeUnMedico(id).stream().map(x->{
+            recetaService.delete(x.getId());
+            return x;
+        }).collect(Collectors.toList());
         medico.removeEspecialidadFromMedico();
-        pacienteRepository.pacientesDeUnMedico(id).stream().map(
+        List<Paciente> pacientes = pacienteRepository.pacientesDeUnMedico(id).stream().map(
                 x->{
-                    x.removeMedico();
+                    pacienteService.delete(x.getId());
                     return x;
                 }
         ).collect(Collectors.toList());
-        recetasRepository.recetasDeUnMedico(id).stream().map(x->{
-            x.deleteMedico();
-            return x;
-        }).collect(Collectors.toList());
         medicoRepository.deleteById(id);
     }
 
