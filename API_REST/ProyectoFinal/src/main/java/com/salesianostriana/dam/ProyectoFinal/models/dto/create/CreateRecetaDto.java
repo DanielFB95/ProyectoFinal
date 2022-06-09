@@ -20,10 +20,10 @@ import java.util.UUID;
 @Builder
 public class CreateRecetaDto {
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private LocalDate fechaInicio;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private LocalDate fechaFin;
 
     private List<DiasDeTomas> diasDeTomas;
