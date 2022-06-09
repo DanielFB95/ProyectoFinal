@@ -13,6 +13,8 @@ import lombok.*;
 @Builder
 public class MedicamentoDto {
 
+    private Long id;
+    
     @NameUnique(message = "{name.unique}")
     private String nombre;
     private String descripcion;

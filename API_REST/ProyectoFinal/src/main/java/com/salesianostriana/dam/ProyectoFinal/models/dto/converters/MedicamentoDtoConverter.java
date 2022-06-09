@@ -20,6 +20,7 @@ public class MedicamentoDtoConverter {
     public MedicamentoDto medicamentoToMedicamentoDto(Medicamento medicamento){
 
         return MedicamentoDto.builder()
+                .id(medicamento.getId())
                 .nombre(medicamento.getNombre())
                 .descripcion(medicamento.getDescripcion())
                 .build();
@@ -32,6 +33,7 @@ public class MedicamentoDtoConverter {
      */
     public Medicamento medicamentoDtoToMedicamento(MedicamentoDto medicamentoDto){
         return Medicamento.builder()
+                .id(medicamentoDto.getId())
                 .nombre(medicamentoDto.getNombre())
                 .descripcion(medicamentoDto.getDescripcion())
                 .build();

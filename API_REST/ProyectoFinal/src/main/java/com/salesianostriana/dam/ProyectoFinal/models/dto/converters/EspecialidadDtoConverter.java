@@ -31,6 +31,7 @@ public class EspecialidadDtoConverter {
     public GetEspecialidadDto especialidadToGetEspecialidadDto (Especialidad especialidad){
 
         GetEspecialidadDto getEspecilidadDto = GetEspecialidadDto.builder()
+                .id(especialidad.getId())
                 .nombre(especialidad.getNombre())
                 .build();
 

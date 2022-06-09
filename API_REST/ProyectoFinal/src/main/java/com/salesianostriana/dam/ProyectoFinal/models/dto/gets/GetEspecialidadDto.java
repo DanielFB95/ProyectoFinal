@@ -11,5 +11,6 @@ import lombok.*;
 @Builder
 public class GetEspecialidadDto {
 
+    private Long id;
     private String nombre;
 }
