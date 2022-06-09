@@ -1,10 +1,12 @@
 package com.salesianostriana.dam.ProyectoFinal.services;
 
 import com.salesianostriana.dam.ProyectoFinal.models.Medico;
+import com.salesianostriana.dam.ProyectoFinal.models.Paciente;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.MedicoDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.MedicoRepository;
+import com.salesianostriana.dam.ProyectoFinal.repositories.PacienteRepository;
 import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,7 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
 
     private final MedicoRepository medicoRepository;
     private final MedicoDtoConverter medicoDtoConverter;
+    private final PacienteRepository pacienteRepository;
 
     /**
      * Este método edita un médico
@@ -77,5 +80,14 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
         Medico medico = medicoRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));
         medico.removeEspecialidadFromMedico();
         medicoRepository.deleteById(id);
+    }
+
+    /**
+     * Este método muestra una lista de los pacientes de un médico
+     * @param id
+     * @return un objeto del tipo List<Paciente>
+     */
+    public List<Paciente> encontrarTodosLosPacientesDeUnMedico(UUID id){
+        return pacienteRepository.pacientesDeUnMedico(id);
     }
 }

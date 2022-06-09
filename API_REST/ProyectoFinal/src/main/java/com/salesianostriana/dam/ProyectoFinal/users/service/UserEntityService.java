@@ -151,7 +151,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
      * @return un objeto del tipo UserEntity
      * @throws Exception, StorageException
      */
-    public UserEntity savePaciente (CreatePacienteDto newUser, UserEntity userEntity, MultipartFile avatar) throws Exception{
+    public UserEntity savePaciente (CreatePacienteDto newUser, UUID id, UserEntity userEntity, MultipartFile avatar) throws Exception{
 
 
         if(newUser.getPassword().contentEquals(newUser.getPassword2())){
@@ -175,7 +175,7 @@ public class UserEntityService extends BaseService<UserEntity, UUID, UserEntityR
             }else{
                 throw new StorageException("No se ha podido guardar la imagen");
             }
-            Medico medico = medicoRepository.findById(userEntity.getId()).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));
+            Medico medico = medicoRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));
             Paciente paciente = Paciente.builder()
                     .password(passwordEncoder.encode(newUser.getPassword()))
                     .nombre(newUser.getNombre())

@@ -2,9 +2,12 @@ package com.salesianostriana.dam.ProyectoFinal.controllers;
 
 import com.salesianostriana.dam.ProyectoFinal.models.Especialidad;
 import com.salesianostriana.dam.ProyectoFinal.models.Medico;
+import com.salesianostriana.dam.ProyectoFinal.models.Paciente;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.MedicoDtoConverter;
+import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.PacienteDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetMedicoDto;
+import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetPacienteDto;
 import com.salesianostriana.dam.ProyectoFinal.services.MedicoService;
 import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
 import com.salesianostriana.dam.ProyectoFinal.utils.PaginationLinksUtils;
@@ -29,6 +32,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Validated
 @RestController
@@ -40,6 +44,7 @@ public class MedicoController {
     private final MedicoService medicoService;
     private final MedicoDtoConverter medicoDtoConverter;
     private final PaginationLinksUtils paginationLinksUtils;
+    private final PacienteDtoConverter pacienteDtoConverter;
 
     @Operation(summary = "Mostrar una médico.")
     @ApiResponses(value = {
@@ -132,5 +137,27 @@ public class MedicoController {
     public ResponseEntity<?> delete (@PathVariable UUID id, @AuthenticationPrincipal UserEntity userEntity){
         medicoService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Muestra todos los paciente de un médico.")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200",
+            description = "Se han encontrado todos los pacientes del médico.",
+            content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Medico.class))
+            }),
+            @ApiResponse(responseCode = "404",
+                    description = "No se han encontrado los pacientes del médico.",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Medico.class
+                                    ))
+                    })})
+    @GetMapping("/pacientes/{id}")
+    public ResponseEntity<List<GetPacienteDto>> pacientesDeUnMedico(@AuthenticationPrincipal UserEntity userEntity, @PathVariable UUID id){
+        return ResponseEntity.ok().body(medicoService.encontrarTodosLosPacientesDeUnMedico(id)
+                .stream()
+                .map(pacienteDtoConverter::pacienteToGetPacienteDto)
+                .collect(Collectors.toList()));
     }
 }

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -104,10 +105,10 @@ public class UserEntityController {
                     description = "No tiene permiso para realizar esta acción.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Paciente.class))})})
-    @PostMapping("/paciente")
-    public ResponseEntity<GetPacienteDto> nuevoPaciente(@Valid @RequestPart("body") CreatePacienteDto nuevoPaciente,@RequestPart("file") MultipartFile avatar ,@AuthenticationPrincipal UserEntity userEntity) throws Exception {
+    @PostMapping("/paciente/{id}")
+    public ResponseEntity<GetPacienteDto> nuevoPaciente(@Valid @PathVariable UUID id , @RequestPart("body") CreatePacienteDto nuevoPaciente, @RequestPart("file") MultipartFile avatar , @AuthenticationPrincipal UserEntity userEntity) throws Exception {
 
-        Paciente user = (Paciente) userEntityService.savePaciente(nuevoPaciente, userEntity, avatar);
+        Paciente user = (Paciente) userEntityService.savePaciente(nuevoPaciente, id, userEntity, avatar);
 
         if (user == null) {
             return ResponseEntity.badRequest().build();
