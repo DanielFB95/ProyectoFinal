@@ -7,6 +7,7 @@ import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetMedicoDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.MedicoRepository;
 import com.salesianostriana.dam.ProyectoFinal.repositories.PacienteRepository;
+import com.salesianostriana.dam.ProyectoFinal.repositories.RecetasRepository;
 import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,7 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
     private final MedicoRepository medicoRepository;
     private final MedicoDtoConverter medicoDtoConverter;
     private final PacienteRepository pacienteRepository;
+    private final RecetasRepository recetasRepository;
 
     /**
      * Este método edita un médico
@@ -79,6 +81,16 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
 
         Medico medico = medicoRepository.findById(id).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico"));
         medico.removeEspecialidadFromMedico();
+        pacienteRepository.pacientesDeUnMedico(id).stream().map(
+                x->{
+                    x.removeMedico();
+                    return x;
+                }
+        ).collect(Collectors.toList());
+        recetasRepository.recetasDeUnMedico(id).stream().map(x->{
+            x.deleteMedico();
+            return x;
+        }).collect(Collectors.toList());
         medicoRepository.deleteById(id);
     }
 

@@ -1,9 +1,11 @@
 package com.salesianostriana.dam.ProyectoFinal.services;
 
 import com.salesianostriana.dam.ProyectoFinal.models.Medicamento;
+import com.salesianostriana.dam.ProyectoFinal.models.Receta;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.MedicamentoDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.MedicamentoDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.repositories.MedicamentoRepository;
+import com.salesianostriana.dam.ProyectoFinal.repositories.RecetasRepository;
 import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,7 @@ public class MedicamentoService extends BaseService<Medicamento,Long,Medicamento
 
     private final MedicamentoRepository medicamentoRepository;
     private final MedicamentoDtoConverter medicamentoDtoConverter;
+    private final RecetasRepository recetasRepository;
 
     /**
      * Este método genera un nuevo medicamento
@@ -75,6 +78,11 @@ public class MedicamentoService extends BaseService<Medicamento,Long,Medicamento
      * @param id
      */
     public void delete(Long id){
+
+        List<Receta> recetas = recetasRepository.recetasQueContienenUnMedicamento(id).stream().map(x -> {
+           x.deleteMedicamento();
+           return x;
+        }).collect(Collectors.toList());
         medicamentoRepository.deleteById(id);
     }
 

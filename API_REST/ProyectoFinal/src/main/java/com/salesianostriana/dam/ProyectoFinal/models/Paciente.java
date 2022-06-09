@@ -27,4 +27,8 @@ public class Paciente extends UserEntity implements Serializable {
     public void addMedico(Medico nuevoMedico){
         this.medico = nuevoMedico;
     }
+
+    public void removeMedico(){
+        this.medico = null;
+    };
 }

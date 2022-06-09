@@ -12,4 +12,10 @@ public interface RecetasRepository  extends JpaRepository<Receta,Long>{
 
     @Query("SELECT r FROM Receta r WHERE paciente_id = :id")
     public List<Receta> recetasDeUnPaciente(@Param("id") UUID id);
+
+    @Query("SELECT r FROM Receta r WHERE medico_id = :id")
+    public List<Receta> recetasDeUnMedico(@Param("id") UUID id);
+
+    @Query("SELECT r FROM Receta r WHERE medicamento_id = :id")
+    public List<Receta> recetasQueContienenUnMedicamento(@Param("id") Long id);
 }

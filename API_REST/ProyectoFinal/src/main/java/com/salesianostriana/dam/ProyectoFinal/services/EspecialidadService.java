@@ -1,10 +1,12 @@
 package com.salesianostriana.dam.ProyectoFinal.services;
 
 import com.salesianostriana.dam.ProyectoFinal.models.Especialidad;
+import com.salesianostriana.dam.ProyectoFinal.models.Medico;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.converters.EspecialidadDtoConverter;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.create.CreateEspecialidadDto;
 import com.salesianostriana.dam.ProyectoFinal.models.dto.gets.GetEspecialidadDto;
 import com.salesianostriana.dam.ProyectoFinal.repositories.EspecialidadRepository;
+import com.salesianostriana.dam.ProyectoFinal.repositories.MedicoRepository;
 import com.salesianostriana.dam.ProyectoFinal.services.base.BaseService;
 import com.salesianostriana.dam.ProyectoFinal.users.model.UserEntity;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class EspecialidadService extends BaseService<Especialidad,Long,Especiali
 
     private final EspecialidadRepository especialidadRepository;
     private final EspecialidadDtoConverter especialidadDtoConverter;
+    private final MedicoRepository medicoRepository;
 
     /**
      * Este método genera una nueva especilidad
@@ -57,6 +60,10 @@ public class EspecialidadService extends BaseService<Especialidad,Long,Especiali
      * @param id
      */
     public void delete(Long id){
+        medicoRepository.buscarMedicosPorEspecialidad(id).stream().map(x ->{
+            x.removeEspecialidadFromMedico();
+            return x;
+        }).collect(Collectors.toList());
         especialidadRepository.deleteById(id);
     }
 
