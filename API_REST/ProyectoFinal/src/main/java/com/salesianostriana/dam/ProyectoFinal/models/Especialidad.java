@@ -19,8 +19,9 @@ public class Especialidad implements Serializable {
     private Long id;
     private String nombre;
 
-    @OneToOne(mappedBy = "especialidad", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Medico medico;
+    // @OneToOne(mappedBy = "especialidad", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    // private Medico medico;
+
 
     public Especialidad (String nombre){
         this.nombre = nombre;

@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.ProyectoFinal.services;
 
+import com.salesianostriana.dam.ProyectoFinal.models.Especialidad;
 import com.salesianostriana.dam.ProyectoFinal.models.Medico;
 import com.salesianostriana.dam.ProyectoFinal.models.Paciente;
 import com.salesianostriana.dam.ProyectoFinal.models.Receta;
@@ -34,6 +35,7 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
     private final PacienteService pacienteService;
     private final RecetasRepository recetasRepository;
     private final RecetaService recetaService;
+    private final EspecialidadService especialidadService;
 
     /**
      * Este método edita un médico
@@ -42,6 +44,8 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
      * @return un objeto del tipo GetMedicoDto
      */
     public GetMedicoDto edit (CreateMedicoDto createMedicoDto, UUID id){
+
+        Especialidad especialidad = especialidadService.findById(createMedicoDto.getEspecialidad()).orElseThrow(()-> new NotFoundException("No se ha encontrado la especialidad"));
 
         return medicoDtoConverter.medicoToMedicoDto(
                 medicoRepository.findById(id).map(x ->{
@@ -53,6 +57,7 @@ public class MedicoService extends BaseService<Medico,UUID,MedicoRepository> {
                         x.setDireccion(createMedicoDto.getDireccion());
                         x.setTelefono(createMedicoDto.getTelefono());
                         x.setNumColegiado(createMedicoDto.getNumColegiado());
+                        x.setEspecialidad(especialidad);
                         medicoRepository.save(x);
                         return x;
                 }).orElseThrow(()-> new NotFoundException("No se ha encontrado el médico")));

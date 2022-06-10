@@ -22,7 +22,11 @@ public class Medico extends UserEntity implements Serializable {
     @Column(name = "numcolegiado")
     private String numColegiado;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    // @OneToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "especialidad_id", foreignKey = @ForeignKey(name = "FK_MEDICO_ESPECIALIDAD"))
+    // private Especialidad especialidad;
+
+    @ManyToOne
     @JoinColumn(name = "especialidad_id", foreignKey = @ForeignKey(name = "FK_MEDICO_ESPECIALIDAD"))
     private Especialidad especialidad;
 
