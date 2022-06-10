@@ -85,10 +85,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Padding(padding: EdgeInsets.only(top: 75)),
                 Center(
                   child: SizedBox(
-                    width: 125,
+                    width: 500,
                     child: Image.asset(
-                      '',
-                      width: 100,
+                      'logotratamed.jpg',
+                      width: 500,
                       fit: BoxFit.cover,
                     ), //Logo que quiera ponerle
                   ),

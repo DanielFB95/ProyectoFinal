@@ -133,7 +133,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ),
-<<<<<<< HEAD
                 ),
               ),
             ),
@@ -157,23 +156,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ))
-=======
-                )
-              ),
-              Center(
-                child: Card(
-                  child: SizedBox(
-                    width: 300,
-                    child: Padding(padding: EdgeInsets.only(top: 15),
-                      child: TextFormField(
-                        controller: emailControler,
-                        decoration: const InputDecoration(hintText: 'E-mail'),
-                      ),
-                    ),
-                  ),
-                ),
-              )
->>>>>>> b8c1a75b8a92c948e1fd272afc53b503d6cefcb2
           ],
         ),
       ),
