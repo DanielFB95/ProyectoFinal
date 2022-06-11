@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_proyecto_final/blocs/login_bloc/login_bloc.dart';
 import 'package:flutter_proyecto_final/models/dto/login_dto.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository_imp.dart';
+import 'package:flutter_proyecto_final/screens/menu_screen.dart';
 import 'package:flutter_proyecto_final/utils/preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,11 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
   late AuthRepository authRepository;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  late bool _passVisibility;
 
   @override
   void initState() {
     super.initState();
     authRepository = AuthRepositoryImpl();
+    _passVisibility = true;
     PreferenceUtils.init();
   }
 
@@ -46,7 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
           listener: (context, state) {
             if (state is LoginSuccessState) {
               PreferenceUtils.setString("token", state.loginResponse.token);
-              // Navigator.push(context,MaterialPageRoute(builder: (context) => const MenuScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MenuScreen()));
             } else if (state is LoginErrorState) {
               _showSnackbar(context, state.message);
             }
@@ -83,6 +89,16 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(padding: EdgeInsets.only(top: 75)),
+                const SizedBox(
+                  width: 500,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/logotratamed.jpg'),
+                      ),
+                    ),
+                  ),
+                ),
                 Center(
                   child: SizedBox(
                     width: 500,
@@ -127,9 +143,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.only(top: 15.0),
                         child: TextFormField(
                           controller: passwordController,
-                          obscureText: true,
+                          obscureText: _passVisibility,
                           decoration: const InputDecoration(
-                              suffixIcon: Icon(Icons.vpn_key),
+                              suffixIcon: IconButton(
+                                icon: Icon(Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    _passVisibility = !_passVisibility;
+                                  });
+                                },
+                              ),
                               suffixIconColor: Colors.white,
                               hintText: 'Contraseña'),
                           validator: (value) {

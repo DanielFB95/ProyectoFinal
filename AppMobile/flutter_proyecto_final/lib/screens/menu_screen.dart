@@ -71,13 +71,13 @@ class _MenuScreenState extends State<MenuScreen> {
                             ? Colors.black
                             : Colors.transparent,
                         width: 1)),
-                /*child:  ClipRRect(
+                child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.asset(
                     'assets/images/avatar.png',
                     width: 30,
                   ),
-                ), */
+                ),
               ),
             )
           ],
