@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_final/screens/medicamento_screen.dart';
 import 'package:flutter_proyecto_final/screens/profile_screen.dart';
+import 'package:flutter_proyecto_final/screens/search_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
@@ -12,7 +13,11 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   int _currentIndex = 0;
 
-  List<Widget> pages = [const MedicamentoScreen(), const ProfileScreen()];
+  List<Widget> pages = [
+    const MedicamentoScreen(),
+    const ProfileScreen(),
+    const SearchScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,20 +51,9 @@ class _MenuScreenState extends State<MenuScreen> {
               },
             ),
             GestureDetector(
-              child: Icon(Icons.search,
-                  color: _currentIndex == 1
-                      ? Colors.black
-                      : const Color(0xff999999)),
               onTap: () {
                 setState(() {
                   _currentIndex = 1;
-                });
-              },
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  _currentIndex = 2;
                 });
               },
               child: Container(
@@ -67,19 +61,31 @@ class _MenuScreenState extends State<MenuScreen> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     border: Border.all(
-                        color: _currentIndex == 2
+                        color: _currentIndex == 1
                             ? Colors.black
                             : Colors.transparent,
                         width: 1)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.asset(
-                    'assets/images/avatar.png',
+                    'assets/images/iconAdmin.png',
                     width: 30,
+                    height: 30,
                   ),
                 ),
               ),
-            )
+            ),
+            GestureDetector(
+              child: Icon(Icons.search,
+                  color: _currentIndex == 2
+                      ? Colors.black
+                      : const Color(0xff999999)),
+              onTap: () {
+                setState(() {
+                  _currentIndex = 2;
+                });
+              },
+            ),
           ],
         ));
   }

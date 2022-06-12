@@ -10,7 +10,9 @@ class MedicamentoScreen extends StatefulWidget {
 class _MedicamentoScreenState extends State<MedicamentoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Padding(padding: EdgeInsets.only(top: 75), child: _receta()),
+    );
   }
 
   Widget _receta() {

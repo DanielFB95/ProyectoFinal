@@ -89,24 +89,16 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(padding: EdgeInsets.only(top: 75)),
-                const SizedBox(
-                  width: 500,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/logotratamed.jpg'),
-                      ),
-                    ),
+                Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
                   ),
-                ),
-                Center(
-                  child: SizedBox(
-                    width: 500,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      'logotratamed.jpg',
-                      width: 500,
-                      fit: BoxFit.cover,
-                    ), //Logo que quiera ponerle
+                      'assets/images/logotratamed.jpg',
+                    ),
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(top: 25)),
@@ -123,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: const InputDecoration(
                               suffixIcon: Icon(Icons.email),
                               suffixIconColor: Colors.white,
-                              hintText: 'Email'),
+                              hintText: ' Email'),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Por favor introduce algún correo';
@@ -144,9 +136,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextFormField(
                           controller: passwordController,
                           obscureText: _passVisibility,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                               suffixIcon: IconButton(
-                                icon: Icon(Icons.visibility),
+                                icon: _passVisibility
+                                    ? Icon(Icons.visibility_off)
+                                    : Icon(Icons.visibility),
                                 onPressed: () {
                                   setState(() {
                                     _passVisibility = !_passVisibility;
@@ -154,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               ),
                               suffixIconColor: Colors.white,
-                              hintText: 'Contraseña'),
+                              hintText: ' Contraseña'),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Por favor introduce algún texto';
@@ -200,69 +194,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const Padding(padding: EdgeInsets.only(top: 15)),
-                const SizedBox(
-                  width: 400,
-                  child: Text(
-                    '---- O continua con ----',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        color: Colors.black54),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      SizedBox(
-                        width: 75,
-                        height: 75,
-                        child: Card(
-                          child: Icon(Icons.email, size: 35),
-                        ),
-                      ),
-                      SizedBox(
-                          width: 75,
-                          height: 75,
-                          child: Card(
-                            child: Icon(
-                              Icons.facebook,
-                              size: 35,
-                            ),
-                          ))
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25, bottom: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        '¿No eres miembro?',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            color: Colors.black54),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/register');
-                        },
-                        child: const Text(
-                          'Regístrate',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                              color: Colors.blueAccent),
-                        ),
-                      )
-                    ],
-                  ),
-                )
               ],
             ),
           )),

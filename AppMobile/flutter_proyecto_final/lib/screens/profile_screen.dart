@@ -10,10 +10,12 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Padding(padding: EdgeInsets.only(top: 75), child: _perfil()),
+    );
   }
 
-  Widget _receta() {
+  Widget _perfil() {
     return Padding(
       padding: const EdgeInsets.all(1),
       child: SizedBox(
