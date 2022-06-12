@@ -1,0 +1,40 @@
+<ng-container *ngIf="usuarioLogado">
+    <mat-drawer-container>
+        <mat-drawer mode="side" opened>
+            <img src="assets/icon.png">
+            <div class="opcionMenu" [routerLink]="['dashboard']">
+                <mat-icon>group</mat-icon><span>Usuarios/as</span>
+            </div>
+            <div class="opcionMenu" [routerLink]="['dashboardValores']">
+                <mat-icon>vaccines</mat-icon><span>Medicamentos / Especialidad</span>
+            </div>
+
+
+            <div class="usuarioLogado">
+                <mat-divider></mat-divider>
+                <div class="opcionMenu">
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
+                        <div flex="50">
+                            <img class="iconAdmin" src="../assets/iconAdmin.png">
+                        </div>
+                        <div flex="50">
+                            <p>{{usuarioLogado.nombre}}</p>
+                            <p class="email">{{usuarioLogado.email}}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="sinUsuario opcionMenu" (click)="logout()">
+                    <mat-icon>logout</mat-icon><span>Cerrar sesión</span>
+                </div>
+            </div>
+
+        </mat-drawer>
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</ng-container>
+<ng-container *ngIf="!usuarioLogado">
+    <router-outlet></router-outlet>
+</ng-container>

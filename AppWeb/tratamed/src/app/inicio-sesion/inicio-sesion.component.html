@@ -1,0 +1,23 @@
+<mat-card>
+    <div mat-card-avatar class="logo"></div>
+    <mat-card-header>
+        <mat-card-title>Inicio de sesión en Clinic</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput formControlName="email" autocomplete="email">
+            <mat-error matErrorMessages></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type='password' formControlName="password">
+            <mat-error matErrorMessages></mat-error>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+            <button fxFlex="50" fxFlex.xs="75" mat-raised-button color="primary" (click)="onSubmit()">Iniciar
+                sesión</button>
+
+        </div>
+    </form>
+</mat-card>
