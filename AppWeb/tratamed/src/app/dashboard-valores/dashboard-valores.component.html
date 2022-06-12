@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
+    <div class="medicamentos" fxFlex="50">
+        <h1>Medicamentos
+            <button (click)="creaMedicamento()" mat-mini-fab color="primary">
+                <mat-icon>add</mat-icon>
+            </button>
+        </h1>
+        <app-tabla *ngIf="medicamentos.length > 0" #tablaMedicamento [datos]="medicamentos" [modelo]="modelo" [visual]="columnas" [acciones]="acciones"
+            (notify)="onNotifyMedicamento($event)"></app-tabla>
+    </div>
+
+</div>
+
