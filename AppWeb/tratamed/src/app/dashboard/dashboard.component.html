@@ -1,0 +1,9 @@
+<div class="medicos">
+    <h1>Médicos
+        <button (click)="creaMedico()" mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+        </button>
+    </h1>
+    <app-tabla #tablaMedico *ngIf="medicos.length" [datos]="medicos" [modelo]="modelo" [visual]="columnas" [acciones]="acciones" [seleccionable]="true"
+        (notify)="onNotifyMedico($event)"></app-tabla>
+</div>
