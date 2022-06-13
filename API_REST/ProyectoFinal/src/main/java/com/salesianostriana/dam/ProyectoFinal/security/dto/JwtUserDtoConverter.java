@@ -12,6 +12,11 @@ public class JwtUserDtoConverter {
                 .apellidos(userEntity.getApellidos())
                 .telefono(userEntity.getTelefono())
                 .email(userEntity.getEmail())
+                .dni(userEntity.getDni())
+                .direccion(userEntity.getDireccion())
+                .avatar(userEntity.getAvatar())
+                .fechaNacimiento(userEntity.getFechaNacimiento())
+                .rol(userEntity.getRol())
                 .token(jwt)
                 .build();
     }
