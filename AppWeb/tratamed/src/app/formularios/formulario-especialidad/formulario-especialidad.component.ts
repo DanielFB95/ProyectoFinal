@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Especialidad } from 'src/app/model/Especialidad';
 
+
 @Component({
   selector: 'app-formulario-especialidad',
   templateUrl: './formulario-especialidad.component.html',
