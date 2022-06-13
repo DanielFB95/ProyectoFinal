@@ -8,6 +8,7 @@ public class JwtUserDtoConverter {
 
     public JwtUserResponse userToJwtUserResponse(UserEntity userEntity, String jwt){
         return JwtUserResponse.builder()
+                .id(userEntity.getId())
                 .nombre(userEntity.getNombre())
                 .apellidos(userEntity.getApellidos())
                 .telefono(userEntity.getTelefono())

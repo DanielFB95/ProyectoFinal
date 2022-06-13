@@ -4,12 +4,14 @@ import com.salesianostriana.dam.ProyectoFinal.users.model.UserRole;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class JwtUserResponse {
 
+    private UUID id;
     private String nombre;
     private String apellidos;
     private String telefono;
