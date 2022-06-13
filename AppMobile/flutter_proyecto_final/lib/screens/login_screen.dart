@@ -51,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
           listener: (context, state) {
             if (state is LoginSuccessState) {
               PreferenceUtils.setString("token", state.loginResponse.token);
+              PreferenceUtils.setString("id", state.loginResponse.id);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const MenuScreen()));
             } else if (state is LoginErrorState) {
