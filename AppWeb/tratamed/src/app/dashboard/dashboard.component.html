@@ -7,3 +7,13 @@
     <app-tabla #tablaMedico *ngIf="medicos.length" [datos]="medicos" [modelo]="modelo" [visual]="columnas" [acciones]="acciones" [seleccionable]="true"
         (notify)="onNotifyMedico($event)"></app-tabla>
 </div>
+
+<div class="pacientes">
+    <h1>Pacientes
+        <button (click)="creaPaciente()" mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+        </button>
+    </h1>
+    <app-tabla #tablaPaciente  *ngIf="medicos.length" [datos]="pacientes" [modelo]="modelo" [visual]="columnas" [acciones]="acciones"
+        (notify)="onNotifyPaciente($event)"></app-tabla>
+</div>

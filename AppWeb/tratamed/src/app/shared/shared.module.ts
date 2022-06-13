@@ -7,6 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 //Españolización proyecto
 import { OnlyNumberDirective } from './directives/onlyNumber.directive';
+import { ElementoTablaComponent } from './tables/elemento-tabla/elemento-tabla.component';
+import { TablaComponent } from './tables/tabla/tabla.component';
+import { AccionTablaComponent } from './tables/accion-tabla/accion-tabla.component';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 
 
@@ -15,6 +18,9 @@ import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
     MatErrorMessagesDirective,
     OnlyNumberDirective,
     ConfirmacionComponent,
+    TablaComponent,
+    AccionTablaComponent,
+    ElementoTablaComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +28,7 @@ import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
     FlexLayoutModule,
     ReactiveFormsModule
   ],
-  exports: [MaterialModule,OnlyNumberDirective, FlexLayoutModule, MatErrorMessagesDirective],
+  exports: [MaterialModule, AccionTablaComponent, TablaComponent, OnlyNumberDirective, FlexLayoutModule, MatErrorMessagesDirective],
   providers: []
 })
 export class SharedModule { }

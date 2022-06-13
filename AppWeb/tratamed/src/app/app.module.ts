@@ -14,6 +14,8 @@ import { UserService } from './services/user.service';
 import { RestService } from './services/rest.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MedicoService } from './services/medico.service';
+import { PacienteService } from './services/paciente.service';
+import { FormularioPacienteComponent } from './formularios/formulario-paciente/formulario-paciente.component';
 import { DashboardValoresComponent } from './dashboard-valores/dashboard-valores.component';
 import { FormularioMedicamentoComponent } from './formularios/formulario-medicamento/formulario-medicamento.component';
 import { FormularioEspecialidadComponent } from './formularios/formulario-especialidad/formulario-especialidad.component';
@@ -28,6 +30,7 @@ import { AuthedGuard } from './guards/authed.guard';
     InicioSesionComponent,
     DashboardComponent,
     FormularioMedicoComponent,
+    FormularioPacienteComponent,
     DashboardValoresComponent,
     FormularioMedicamentoComponent,
     FormularioEspecialidadComponent
@@ -41,7 +44,7 @@ import { AuthedGuard } from './guards/authed.guard';
     SharedModule,
     HttpClientModule
   ],
-  providers: [SharedService,RestService,  UserService, MedicoService, MedicamentoService, EspecialidadService, AuthGuard, AuthedGuard],
+  providers: [SharedService,RestService,  UserService, MedicoService, PacienteService, MedicamentoService, EspecialidadService, AuthGuard, AuthedGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
