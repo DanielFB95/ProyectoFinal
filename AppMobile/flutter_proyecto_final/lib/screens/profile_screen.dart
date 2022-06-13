@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_proyecto_final/models/paciente_response.dart';
 import 'package:flutter_proyecto_final/models/usuario_response.dart';
-import 'package:flutter_proyecto_final/providers/app_provider.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository_imp.dart';
-import 'package:flutter_proyecto_final/repositories/paciente_repository/paciente_repository.dart';
-import 'package:flutter_proyecto_final/repositories/paciente_repository/paciente_repository_impl.dart';
-import 'package:flutter_proyecto_final/screens/login_screen.dart';
-import 'package:flutter_proyecto_final/screens/menu_screen.dart';
-import 'package:flutter_proyecto_final/utils/constant.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -19,8 +11,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late PacienteRepository pacienteRepository;
-  late Future<Paciente> paciente;
   late AuthRepository authRepository;
   late Future<Usuario> usuario;
 
@@ -29,8 +19,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     authRepository = AuthRepositoryImpl();
     usuario = authRepository.fetchUsuario();
-    pacienteRepository = PacienteRepositoryImpl();
-    paciente = pacienteRepository.fetchPaciente();
   }
 
   @override
@@ -61,17 +49,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _profile(Usuario usuario) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+        padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
         child: ListView(
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Container(
+                SizedBox(
                   width: 300,
                   height: 125,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 40),
+                    padding: const EdgeInsets.only(left: 40),
                     child: /* Image.network(usuario.avatar
                         .toString()), */
                         Image.asset('assets/images/iconAdmin.png'),
@@ -80,11 +68,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             Container(height: 15.0),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(5.0),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Nombre",
                 style: TextStyle(
                   fontSize: 17,
@@ -95,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 usuario.nombre + ' ' + usuario.apellidos,
               ),
               trailing: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   size: 20.0,
                 ),
@@ -104,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Email",
                 style: TextStyle(
                   fontSize: 17,
@@ -116,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Teléfono",
                 style: TextStyle(
                   fontSize: 17,
@@ -128,7 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Dirección",
                 style: TextStyle(
                   fontSize: 17,
@@ -140,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Dni",
                 style: TextStyle(
                   fontSize: 17,
@@ -152,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "Fecha de nacimiento",
                 style: TextStyle(
                   fontSize: 17,
@@ -164,19 +152,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _perfilUsuario(Usuario usuario) {
-    return Padding(
-      padding: const EdgeInsets.all(1),
-      child: SizedBox(
-        width: 200,
-        height: 200,
-        child: Column(
-          children: [Text(usuario.nombre)],
         ),
       ),
     );

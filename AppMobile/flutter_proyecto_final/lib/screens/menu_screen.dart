@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_final/screens/medicamento_screen.dart';
+import 'package:flutter_proyecto_final/screens/pacientes_screen.dart';
 import 'package:flutter_proyecto_final/screens/profile_screen.dart';
 import 'package:flutter_proyecto_final/screens/search_screen.dart';
 
@@ -14,7 +15,8 @@ class _MenuScreenState extends State<MenuScreen> {
   int _currentIndex = 0;
 
   List<Widget> pages = [
-    const MedicamentoScreen(),
+    //const MedicamentoScreen(),
+    const PacientesScreen(),
     const ProfileScreen(),
     const SearchScreen()
   ];

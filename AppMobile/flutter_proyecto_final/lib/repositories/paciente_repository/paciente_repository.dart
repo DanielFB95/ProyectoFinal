@@ -1,5 +1,5 @@
-import 'package:flutter_proyecto_final/models/paciente_response.dart';
+import 'package:flutter_proyecto_final/models/pacientes_response.dart';
 
 abstract class PacienteRepository {
-  Future<Paciente> fetchPaciente();
+  Future<List<Paciente>> fetchPacientes();
 }
