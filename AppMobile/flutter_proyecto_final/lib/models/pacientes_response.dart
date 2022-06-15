@@ -28,7 +28,7 @@ class PacienteResponse {
 
   PacienteResponse.fromJson(Map<String, dynamic> json) {
     result =
-        List.from(json['content']).map((e) => Paciente.fromJson(e)).toList();
+        List.from(json['result']).map((e) => Paciente.fromJson(e)).toList();
     pageable = Pageable.fromJson(json['pageable']);
     last = json['last'];
     totalElements = json['totalElements'];
@@ -43,7 +43,7 @@ class PacienteResponse {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['content'] = result.map((e) => e.toJson()).toList();
+    _data['result'] = result.map((e) => e.toJson()).toList();
     _data['pageable'] = pageable.toJson();
     _data['last'] = last;
     _data['totalElements'] = totalElements;

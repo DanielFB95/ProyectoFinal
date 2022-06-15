@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_final/models/usuario_response.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository_imp.dart';
+import 'package:flutter_proyecto_final/screens/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -82,14 +83,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               subtitle: Text(
                 usuario.nombre + ' ' + usuario.apellidos,
               ),
-              trailing: IconButton(
+              /*  trailing: IconButton(
                 icon: const Icon(
                   Icons.edit,
                   size: 20.0,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FormularioUsuarioScreen(
+                                usuario: usuario,
+                              )));
+                },
                 tooltip: "Edit",
-              ),
+              ), */
             ),
             ListTile(
               title: const Text(
@@ -149,6 +157,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               subtitle: Text(
                 usuario.fechaNacimiento,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15, bottom: 15),
+              child: Center(
+                child: SizedBox(
+                  width: 300,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin:
+                          const EdgeInsets.only(top: 30, left: 30, right: 30),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 50, vertical: 20),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Text(
+                        'Cerrar sesión'.toUpperCase(),
+                        style: const TextStyle(color: Colors.black),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

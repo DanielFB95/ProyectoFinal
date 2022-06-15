@@ -1,7 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter_proyecto_final/models/pacientes_response.dart';
 import 'package:flutter_proyecto_final/models/receta_response.dart';
+import 'package:flutter_proyecto_final/models/usuario_response.dart';
 import 'package:flutter_proyecto_final/repositories/paciente_repository/paciente_repository.dart';
 import 'package:flutter_proyecto_final/utils/constant.dart';
 import 'package:flutter_proyecto_final/utils/preferences.dart';
@@ -25,14 +25,14 @@ class PacienteRepositoryImpl extends PacienteRepository {
     if (response.statusCode == 200) {
       return PacienteResponse.fromJson(json.decode(response.body)).result;
     } else {
-      throw Exception('Fail to load person');
+      throw Exception('Fállo al cargar la lista de pacientes.');
     }
   }
 
   @override
   Future<List<Receta>> fetchRecetas() async {
     var token = PreferenceUtils.getString("token");
-    var id = PreferenceUtils.getString("id");
+    var id = PreferenceUtils.getString("idPaciente");
 
     Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -44,9 +44,42 @@ class PacienteRepositoryImpl extends PacienteRepository {
         headers: headers);
 
     if (response.statusCode == 200) {
-      return Receta.fromJson(json.decode(response.body));
+      return (List.from(json.decode(response.body))
+          .map((e) => Receta.fromJson(e))
+          .toList());
     } else {
-      throw Exception('Fail to load person');
+      throw Exception('Fállo al cargar recetas');
+    }
+  }
+
+  @override
+  Future<Paciente> editPaciente(Usuario usuario) async {
+    var token = PreferenceUtils.getString("token");
+    var id = PreferenceUtils.getString("idPaciente");
+
+    var body = json.encode({
+      "nombre": usuario.nombre,
+      "apellidos": usuario.apellidos,
+      "email": usuario.email,
+      "telefono": usuario.telefono,
+      "dni": usuario.dni,
+      "direccion": usuario.direccion
+    });
+
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    final response = await _client.put(
+        Uri.parse('${Constant.URL_API_BASE}/paciente/$id'),
+        headers: headers,
+        body: body);
+
+    if (response.statusCode == 200) {
+      return Paciente.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Fállo al cargar el paciente');
     }
   }
 }

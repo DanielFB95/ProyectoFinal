@@ -3,6 +3,10 @@
 import 'package:flutter/material.dart';
 
 class Constant {
+  static const String API_KEY = "2c9ed2e1964eee17a3961008e54529bb";
+  static const String LAT = 'latitud';
+  static const String LONG = 'longitud';
+
   static const String URL_API_BASE =
       "https://consultamedicaapp.herokuapp.com"; //para conectarse al local host del ordenador se utiliza la ip 10.0.2.2
 

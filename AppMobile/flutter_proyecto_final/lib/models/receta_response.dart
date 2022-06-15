@@ -2,6 +2,24 @@ import 'package:flutter_proyecto_final/models/medicamento_response.dart';
 import 'package:flutter_proyecto_final/models/medico_response.dart';
 import 'package:flutter_proyecto_final/models/pacientes_response.dart';
 
+class RecetaResponse {
+  RecetaResponse({
+    required this.content,
+  });
+  late final List<Receta> content;
+
+  RecetaResponse.fromJson(Map<String, dynamic> json) {
+    content =
+        List.from(json['content']).map((e) => Receta.fromJson(e)).toList();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['content'] = content.map((e) => e.toJson()).toList();
+    return _data;
+  }
+}
+
 class Receta {
   Receta({
     required this.fechaInicio,

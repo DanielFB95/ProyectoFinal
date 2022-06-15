@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_proyecto_final/screens/medicamento_screen.dart';
-import 'package:flutter_proyecto_final/screens/pacientes_screen.dart';
 import 'package:flutter_proyecto_final/screens/profile_screen.dart';
-import 'package:flutter_proyecto_final/screens/search_screen.dart';
+import 'package:flutter_proyecto_final/screens/receta_screen.dart';
+import 'package:flutter_proyecto_final/screens/map_page.dart';
 
-class MenuScreen extends StatefulWidget {
-  const MenuScreen({Key? key}) : super(key: key);
+class MenuPacienteScreen extends StatefulWidget {
+  const MenuPacienteScreen({Key? key}) : super(key: key);
 
   @override
-  _MenuScreenState createState() => _MenuScreenState();
+  _MenuPacienteScreenState createState() => _MenuPacienteScreenState();
 }
 
-class _MenuScreenState extends State<MenuScreen> {
+class _MenuPacienteScreenState extends State<MenuPacienteScreen> {
   int _currentIndex = 0;
 
   List<Widget> pages = [
-    //const MedicamentoScreen(),
-    const PacientesScreen(),
+    const RecetaScreen(),
     const ProfileScreen(),
-    const SearchScreen()
+    const MapClickPage()
   ];
 
   @override

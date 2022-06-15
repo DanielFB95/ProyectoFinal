@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_final/models/pacientes_response.dart';
-import 'package:flutter_proyecto_final/repositories/paciente_repository/paciente_repository.dart';
-import 'package:flutter_proyecto_final/repositories/paciente_repository/paciente_repository_impl.dart';
+import 'package:flutter_proyecto_final/repositories/medico_repository.dart/medico_repository.dart';
+import 'package:flutter_proyecto_final/repositories/medico_repository.dart/medico_repository_impl.dart';
+import 'package:flutter_proyecto_final/screens/paciente_screen.dart';
 
 class PacientesScreen extends StatefulWidget {
   const PacientesScreen({Key? key}) : super(key: key);
@@ -11,15 +12,15 @@ class PacientesScreen extends StatefulWidget {
 }
 
 class _PacientesScreenState extends State<PacientesScreen> {
-  late PacienteRepository pacienteRepository;
+  late MedicoRepository medicoRepository;
   late Future<List<Paciente>> pacientes;
   bool lightMode = true;
 
   @override
   void initState() {
     super.initState();
-    pacienteRepository = PacienteRepositoryImpl();
-    pacientes = pacienteRepository.fetchPacientes();
+    medicoRepository = MedicoRepositoryImpl();
+    pacientes = medicoRepository.fetchPacientes();
   }
 
   @override
@@ -40,9 +41,8 @@ class _PacientesScreenState extends State<PacientesScreen> {
                       Container(
                         margin: const EdgeInsets.only(left: 10, bottom: 10),
                         child: const Text(
-                          'People',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'Jedi'),
+                          'Pacientes',
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       _pacienteList(snapshot.data!)
@@ -51,8 +51,6 @@ class _PacientesScreenState extends State<PacientesScreen> {
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }
-
-                // By default, show a loading spinner.
                 return const CircularProgressIndicator();
               },
             ))));
@@ -74,15 +72,23 @@ class _PacientesScreenState extends State<PacientesScreen> {
   }
 
   Widget _paciente(Paciente paciente) {
-    return Card(
-      child: Column(
-        children: [
-          const Text('Nombre'),
-          Text(paciente.nombre + ' ' + paciente.apellidos),
-          Text(paciente.direccion),
-          Text(paciente.email),
-          Text(paciente.dni)
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PacienteScreen(paciente: paciente)));
+      },
+      child: Card(
+        child: Column(
+          children: [
+            const Text('Nombre'),
+            Text(paciente.nombre + ' ' + paciente.apellidos),
+            Text(paciente.direccion),
+            Text(paciente.email),
+            Text(paciente.dni)
+          ],
+        ),
       ),
     );
   }

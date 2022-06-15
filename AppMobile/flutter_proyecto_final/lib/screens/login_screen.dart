@@ -6,7 +6,8 @@ import 'package:flutter_proyecto_final/blocs/login_bloc/login_bloc.dart';
 import 'package:flutter_proyecto_final/models/dto/login_dto.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository_imp.dart';
-import 'package:flutter_proyecto_final/screens/menu_screen.dart';
+import 'package:flutter_proyecto_final/screens/menu_medico_screen.dart';
+import 'package:flutter_proyecto_final/screens/menu_paciente_screen.dart';
 import 'package:flutter_proyecto_final/utils/preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -51,9 +52,20 @@ class _LoginScreenState extends State<LoginScreen> {
           listener: (context, state) {
             if (state is LoginSuccessState) {
               PreferenceUtils.setString("token", state.loginResponse.token);
-              PreferenceUtils.setString("id", state.loginResponse.id);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MenuScreen()));
+
+              if (state.loginResponse.rol.contains("PACIENTE")) {
+                PreferenceUtils.setString("idPaciente", state.loginResponse.id);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MenuPacienteScreen()));
+              } else {
+                PreferenceUtils.setString("idMedico", state.loginResponse.id);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MenuMedicoScreen()));
+              }
             } else if (state is LoginErrorState) {
               _showSnackbar(context, state.message);
             }
