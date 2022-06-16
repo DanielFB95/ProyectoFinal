@@ -1,7 +1,7 @@
+// ignore_for_file: must_be_immutable, prefer_final_fields
+
 import 'package:flutter/material.dart';
-import 'package:flutter_proyecto_final/models/especialidad_response.dart';
 import 'package:flutter_proyecto_final/models/medico_edit.dart';
-import 'package:flutter_proyecto_final/models/medico_response.dart';
 import 'package:flutter_proyecto_final/models/usuario_response.dart';
 import 'package:flutter_proyecto_final/repositories/medico_repository.dart/medico_repository.dart';
 import 'package:flutter_proyecto_final/repositories/medico_repository.dart/medico_repository_impl.dart';

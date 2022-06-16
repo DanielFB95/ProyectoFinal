@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_final/models/usuario_response.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository.dart';
@@ -171,19 +173,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           MaterialPageRoute(
                               builder: (context) => const LoginScreen()));
                     },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin:
-                          const EdgeInsets.only(top: 30, left: 30, right: 30),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 20),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 2),
-                          borderRadius: BorderRadius.circular(50)),
-                      child: Text(
-                        'Cerrar sesión'.toUpperCase(),
-                        style: const TextStyle(color: Colors.black),
-                        textAlign: TextAlign.center,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(150)),
+                      margin: const EdgeInsets.all(15),
+                      elevation: 10,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 50, vertical: 20),
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 36, 175, 185),
+                            border: Border.all(color: Colors.red, width: 5),
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Text(
+                          'Cerrar sesión'.toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),

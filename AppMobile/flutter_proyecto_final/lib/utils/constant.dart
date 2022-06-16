@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, deprecated_member_use
 
 import 'package:flutter/material.dart';
 
@@ -14,11 +14,11 @@ class Constant {
 
   //Colors for theme
 //  Color(0xfffcfcff);
-  static Color lightPrimary = Color(0xfffcfcff);
+  static Color lightPrimary = const Color(0xfffcfcff);
   static Color darkPrimary = Colors.black;
   static Color lightAccent = Colors.red;
   static Color darkAccent = Colors.red;
-  static Color lightBG = Color(0xfffcfcff);
+  static Color lightBG = const Color(0xfffcfcff);
   static Color darkBG = Colors.black;
   static Color ratingBG = Colors.yellow;
 

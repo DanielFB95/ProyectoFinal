@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_proyecto_final/models/dto/usuario_dto.dart';
 import 'package:flutter_proyecto_final/models/medico_edit.dart';
 import 'package:flutter_proyecto_final/models/medico_response.dart';
 import 'package:flutter_proyecto_final/models/pacientes_response.dart';
-import 'package:flutter_proyecto_final/models/usuario_response.dart';
 import 'package:flutter_proyecto_final/repositories/medico_repository.dart/medico_repository.dart';
 import 'package:flutter_proyecto_final/utils/constant.dart';
 import 'package:flutter_proyecto_final/utils/preferences.dart';

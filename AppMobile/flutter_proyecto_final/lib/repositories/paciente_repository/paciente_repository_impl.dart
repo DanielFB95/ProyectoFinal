@@ -23,7 +23,9 @@ class PacienteRepositoryImpl extends PacienteRepository {
         .get(Uri.parse('${Constant.URL_API_BASE}/paciente/'), headers: headers);
 
     if (response.statusCode == 200) {
-      return PacienteResponse.fromJson(json.decode(response.body)).result;
+      return PacienteResponse.fromJson(
+              json.decode(utf8.decode(response.bodyBytes)))
+          .result;
     } else {
       throw Exception('Fállo al cargar la lista de pacientes.');
     }
@@ -44,7 +46,7 @@ class PacienteRepositoryImpl extends PacienteRepository {
         headers: headers);
 
     if (response.statusCode == 200) {
-      return (List.from(json.decode(response.body))
+      return (List.from(json.decode(utf8.decode(response.bodyBytes)))
           .map((e) => Receta.fromJson(e))
           .toList());
     } else {

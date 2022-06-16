@@ -1,4 +1,4 @@
-import 'dart:developer';
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget form(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(245, 245, 245, 245),
+      backgroundColor: Colors.white,
       body: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -110,25 +110,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      'assets/images/logotratamed.jpg',
+                      'assets/images/logo_tratamed.png',
                     ),
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(top: 25)),
                 Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Center(
                       child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    margin: EdgeInsets.all(15),
+                    elevation: 10,
                     child: SizedBox(
                       width: 300,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.only(top: 15, left: 15),
                         child: TextFormField(
+                          style: TextStyle(fontSize: 20),
                           controller: emailController,
                           decoration: const InputDecoration(
-                              suffixIcon: Icon(Icons.email),
-                              suffixIconColor: Colors.white,
-                              hintText: ' Email'),
+                            border: InputBorder.none,
+                            suffixIcon: Icon(Icons.email),
+                            suffixIconColor: Colors.white,
+                            hintText: ' Email',
+                          ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Por favor introduce algún correo';
@@ -142,14 +149,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Center(
                   child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    margin: EdgeInsets.all(15),
+                    elevation: 10,
                     child: SizedBox(
                       width: 300,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
+                        padding: const EdgeInsets.only(top: 15.0, left: 15),
                         child: TextFormField(
+                          style: TextStyle(fontSize: 20),
                           controller: passwordController,
                           obscureText: _passVisibility,
                           decoration: InputDecoration(
+                              border: InputBorder.none,
                               suffixIcon: IconButton(
                                 icon: _passVisibility
                                     ? Icon(Icons.visibility_off)
@@ -188,19 +201,27 @@ class _LoginScreenState extends State<LoginScreen> {
                                 .add(DoLoginEvent(loginDto));
                           }
                         },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.only(
-                              top: 30, left: 30, right: 30),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 20),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 2),
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Text(
-                            'Login'.toUpperCase(),
-                            style: const TextStyle(color: Colors.black),
-                            textAlign: TextAlign.center,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(150)),
+                          margin: EdgeInsets.all(15),
+                          elevation: 10,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 50, vertical: 20),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 36, 175, 185),
+                                border: Border.all(color: Colors.red, width: 5),
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Text(
+                              'Login'.toUpperCase(),
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),

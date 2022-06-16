@@ -76,7 +76,7 @@ class _MenuMedicoScreenState extends State<MenuMedicoScreen> {
               ),
             ),
             GestureDetector(
-              child: Icon(Icons.search,
+              child: Icon(Icons.place,
                   color: _currentIndex == 2
                       ? Colors.black
                       : const Color(0xff999999)),

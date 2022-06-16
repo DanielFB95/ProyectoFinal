@@ -1,4 +1,3 @@
-import 'package:flutter_proyecto_final/models/dto/usuario_dto.dart';
 import 'package:flutter_proyecto_final/models/pacientes_response.dart';
 import 'package:flutter_proyecto_final/models/receta_response.dart';
 import 'package:flutter_proyecto_final/models/usuario_response.dart';

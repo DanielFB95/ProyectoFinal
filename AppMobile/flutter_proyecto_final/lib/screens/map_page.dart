@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_final/screens/google_map_app.dart';
 import 'package:flutter_proyecto_final/utils/constant.dart';

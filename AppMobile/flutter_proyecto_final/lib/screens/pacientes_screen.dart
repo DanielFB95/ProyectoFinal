@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_final/models/pacientes_response.dart';
 import 'package:flutter_proyecto_final/repositories/medico_repository.dart/medico_repository.dart';
@@ -26,39 +28,49 @@ class _PacientesScreenState extends State<PacientesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey,
-        body: Container(
-            padding: const EdgeInsets.only(top: 10),
-            color: _getBackgroundColor(),
-            child: Center(
-                child: FutureBuilder<List<Paciente>>(
-              future: pacientes,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(left: 10, bottom: 10),
+        body: SingleChildScrollView(
+      child: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/fondo_tratamed.jpg"),
+                  fit: BoxFit.cover)),
+          height: MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.only(top: 10),
+          child: Center(
+              child: FutureBuilder<List<Paciente>>(
+            future: pacientes,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 30),
                         child: const Text(
-                          'Pacientes',
-                          style: TextStyle(color: Colors.white),
+                          'PACIENTES',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
-                      _pacienteList(snapshot.data!)
-                    ],
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
-                }
-                return const CircularProgressIndicator();
-              },
-            ))));
+                    ),
+                    _pacienteList(snapshot.data!)
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
+          ))),
+    ));
   }
 
   Widget _pacienteList(List<Paciente> peopleList) {
     return SizedBox(
-      height: 270,
+      height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
         shrinkWrap: true,
@@ -79,23 +91,97 @@ class _PacientesScreenState extends State<PacientesScreen> {
             MaterialPageRoute(
                 builder: (context) => PacienteScreen(paciente: paciente)));
       },
-      child: Card(
-        child: Column(
-          children: [
-            const Text('Nombre'),
-            Text(paciente.nombre + ' ' + paciente.apellidos),
-            Text(paciente.direccion),
-            Text(paciente.email),
-            Text(paciente.dni)
-          ],
-        ),
-      ),
+      child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            margin: const EdgeInsets.all(15),
+            elevation: 10,
+            child: Center(
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      'Nombre',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(paciente.nombre + ' ' + paciente.apellidos),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Dirección",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(paciente.direccion),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Email",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(paciente.email),
+                  ),
+                  const Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        "Dni",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(paciente.dni),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Teléfono",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(paciente.telefono),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Fecha de nacimiento",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 15),
+                    child: Text(paciente.fechaNacimiento),
+                  ),
+                ],
+              ),
+            ),
+          )),
     );
   }
 
   _getBackgroundColor() {
     return lightMode
-        ? Color.fromARGB(255, 255, 255, 255)
+        ? const Color.fromARGB(255, 36, 175, 185)
         : const Color(0xfff1f1f1);
   }
 }

@@ -1,10 +1,11 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_proyecto_final/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:flutter_proyecto_final/models/dto/sign_up_dto.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository.dart';
 import 'package:flutter_proyecto_final/repositories/auth_repository/auth_repository_imp.dart';
-import 'package:flutter_proyecto_final/utils/preferences.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -92,34 +93,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(padding: EdgeInsets.only(top: 75)),
-            Center(
+            const Padding(padding: EdgeInsets.only(top: 75)),
+            const Center(
               child: SizedBox(
                 width: 125,
                 //child: Image.asset('', width: 100,fit: BoxFit.cover,),
               ),
             ),
-            Padding(padding: EdgeInsets.only(top: 25)),
-            Center(
+            const Padding(padding: EdgeInsets.only(top: 25)),
+            const Center(
               child: Text(
                 'Creación de una',
                 style: TextStyle(fontSize: 20, color: Colors.black54),
               ),
             ),
-            Center(
+            const Center(
               child: Text(
                 'nueva cuenta.',
                 style: TextStyle(fontSize: 20, color: Colors.black54),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 35),
+              padding: const EdgeInsets.only(top: 35),
               child: Center(
                 child: Card(
                   child: SizedBox(
                     width: 300,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
                         controller: usernameController,
                         decoration: const InputDecoration(
@@ -141,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: SizedBox(
                 width: 300,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.only(top: 15),
                   child: TextFormField(
                     controller: fullnameController,
                     decoration:

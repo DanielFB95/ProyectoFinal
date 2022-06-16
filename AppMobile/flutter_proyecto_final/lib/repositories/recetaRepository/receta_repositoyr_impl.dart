@@ -16,7 +16,7 @@ class RecetaRepositoryImpl extends RecetaRepository {
 
     var body = json.encode({
       "fechaInicio": recetaDto.fechaInicio,
-      "fechaFin": recetaDto.fechaInicio,
+      "fechaFin": recetaDto.fechaFin,
       "diasDeTomas": recetaDto.diasDeTomas,
       "momentosDeTomas": recetaDto.momentosDeTomas,
       "idMedicamento": recetaDto.idMedicamento,
