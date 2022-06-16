@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-#Mon May 16 14:02:32 CEST 2022
-base.0=E\:\\Desktop\\ProyectoFinal\\AppMobile\\flutter_proyecto_final\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-=======
-#Fri Apr 29 09:19:01 CEST 2022
-base.0=C\:\\Users\\fernandez.bedan20\\Desktop\\ProyectoFinal\\AppMobile\\flutter_proyecto_final\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
->>>>>>> bb355a4fdb0e9f1f440cb21535344f3e40625bed
-renamed.0=classes.dex
-path.0=classes.dex

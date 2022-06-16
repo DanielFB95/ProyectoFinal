@@ -1,0 +1,1029 @@
+{
+	"info": {
+		"_postman_id": "b10270ee-f6de-4e7b-9d1f-487022794ab0",
+		"name": "ProyectoFinal Heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17654593"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin2@clinica.es\",\r\n    \"password\": \"daniel12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/auth/login",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/auth/me",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Especialidad",
+			"item": [
+				{
+					"name": "Crear especialidad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Cardiólogo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/especialidad/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"especialidad",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar especialidad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Medico de familia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/especialidad/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"especialidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una especialidad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/especialidad/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"especialidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todas las especilidades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/especialidad/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"especialidad",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar una especilidad",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/especialidad/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"especialidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Medicamento",
+			"item": [
+				{
+					"name": "Crear medicamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Paracetamol\",\r\n    \"descripcion\": \"Descripcion de prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medicamento/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medicamento",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un medicamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medicamento/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medicamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los medicamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medicamento/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medicamento",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar medicamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Paracetamol\",\r\n    \"descripcion\": \"Descripcion de prueba EDITADA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medicamento/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medicamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un medicamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medicamento/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medicamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Crear un admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"email\": \"admin@clinica.es\",\r\n    \"telefono\": \"555-555-555\",\r\n    \"dni\": \"A123456789\",\r\n    \"fechaNacimiento\": \"22/11/1995\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/user/admin",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paciente",
+			"item": [
+				{
+					"name": "Crear paciente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "{\n    \"nombre\": \"Daniel\",\n    \"apellidos\": \"Fernandez Bernal\",\n    \"fechaNacimiento\": \"1995-11-22\",\n    \"email\": \"paciente@clinica.es\",\n    \"telefono\": \"555-555-555\",\n    \"dni\": \"123456789A\",\n    \"direccion\": \"Calle Gran Poder, 1\",\n    \"password\": \"daniel12\",\n    \"password2\": \"daniel12\",\n    \"observaciones\": \"Texto de prueba\"\n}",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/E:/Desktop/ProyectosClase/AD Y PSP/ProyectoMiarma/Miarma/uploads/imagen.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/user/paciente/ac11b4be-816b-15d0-8181-6ba698030001",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"paciente",
+								"ac11b4be-816b-15d0-8181-6ba698030001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/paciente/ac104bfa-813f-14e5-8181-3f8be8670008",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"paciente",
+								"ac104bfa-813f-14e5-8181-3f8be8670008"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/paciente/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"paciente",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener las recetas de un paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/paciente/recetas/ac11933e-8147-19e1-8181-47d7ef10000d",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"paciente",
+								"recetas",
+								"ac11933e-8147-19e1-8181-47d7ef10000d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un paciente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandezbedan20@triana.sale\",\r\n    \"telefono\": \"Nuevo tlf de prueba\",\r\n    \"dni\": \"Nuevo dni de prueba\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"observaciones\": \"Texto de prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/paciente/ac104bfa-813f-14e5-8181-3f8be8670008",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"paciente",
+								"ac104bfa-813f-14e5-8181-3f8be8670008"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/paciente/ac104bfa-813f-14e5-8181-3f8be8670008",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"paciente",
+								"ac104bfa-813f-14e5-8181-3f8be8670008"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "Crear medico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "{\n    \"nombre\": \"Daniel\",\n    \"apellidos\": \"Fernandez Bernal\",\n    \"fechaNacimiento\": \"1995-11-22\",\n    \"email\": \"medico@clinica.es\",\n    \"telefono\": \"555-555-555\",\n    \"dni\": \"A123456789\",\n    \"direccion\": \"Calle Gran Poder, 1\",\n    \"password\": \"daniel12\",\n    \"password2\": \"daniel12\",\n    \"numColegiado\": \"B222222222\",\n    \"especialidad\": 1\n}",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/E:/Desktop/ProyectosClase/AD Y PSP/ProyectoMiarma/Miarma/uploads/imagen.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/user/medico/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un médico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medico/ac104bfa-813f-14e5-8181-3f8a67dd0006",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medico",
+								"ac104bfa-813f-14e5-8181-3f8a67dd0006"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los medicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medico/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener los pacientes del medico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medico/pacientes/ac11933e-8147-19e1-8181-47d72dd30009",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medico",
+								"pacientes",
+								"ac11933e-8147-19e1-8181-47d72dd30009"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un médico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandebedan@trianasalesianos.edu\",\r\n    \"numColegiado\": \"231545454\",\r\n    \"telefono\": \"Nuevo telefono\",\r\n    \"dni\": \"nuevo dni\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"especialidad\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medico/ac11b7fe-8162-109b-8181-62a0f28a0001",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medico",
+								"ac11b7fe-8162-109b-8181-62a0f28a0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un medico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/medico/ac104bfa-813f-14e5-8181-3f8a67dd0006",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"medico",
+								"ac104bfa-813f-14e5-8181-3f8a67dd0006"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Receta",
+			"item": [
+				{
+					"name": "Crear receta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaInicio\": \"2022-06-09\",\r\n    \"fechaFin\": \"2022-06-24\",\r\n    \"diasDeTomas\": [\"LUNES\",\"MARTES\",\"MIERCOLES\",\"VIERNES\"],\r\n    \"momentosDeTomas\": [\"MAÑANA\",\"TARDE\", \"NOCHE\"],\r\n    \"idMedicamento\": \"1\",\r\n    \"idPaciente\": \"ac136e06-816c-1fc1-8181-6cf0d31c0002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/receta/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"receta",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una receta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/receta/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"receta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obterner listado de recetas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/receta/",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"receta",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar una receta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaInicio\": \"20/06/2022\",\r\n    \"fechaFin\": \"24/06/2022\",\r\n    \"diasDeTomas\": [\"LUNES\",\"MARTES\",\"JUEVES\",\"VIERNES\"],\r\n    \"momentosDeTomas\": [\"MANIANA\",\"TARDE\",\"NOCHE\"],\r\n    \"idMedicamento\": \"1\",\r\n    \"idPaciente\": \"ac128001-8134-1322-8181-3474b59a0002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/receta/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"receta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar una receta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://consultamedicaapp.herokuapp.com/receta/1",
+							"protocol": "https",
+							"host": [
+								"consultamedicaapp",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"receta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
