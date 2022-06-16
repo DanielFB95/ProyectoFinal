@@ -43,7 +43,6 @@ export class FormularioMedicoComponent implements OnInit {
             direccion: new FormControl(this.medico?.direccion),
             password2: new FormControl(),
             email: new FormControl(this.medico?.email),
-
             fechaNacimiento: new FormControl(this.medico?.fechaNacimiento ?? new Date()),
             numeroColegiado: new FormControl(this.medico?.numColegiado),
             especialidad: new FormControl(this.medico?.especialidad?.id),
