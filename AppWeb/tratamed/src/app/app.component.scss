@@ -1,0 +1,62 @@
+mat-drawer-container {
+    height: 100vh;
+}
+mat-drawer {
+    padding: 1.5vw;
+    width: 17.5vw;
+    background-color: black;
+    color: white;
+}
+mat-drawer-content {
+    height: 90vh;
+    padding: 2.5vw;
+    background-color: #eff4ff!important;
+}
+mat-divider {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    border: 1px solid gray;
+}
+img{
+    width: 10vw;
+}
+
+
+
+.opcionMenu{
+    cursor: pointer;
+    margin-bottom: 2vh;
+    mat-icon{
+        vertical-align: bottom;
+        margin-right: 0.5vw;
+    }
+    span{
+        font-size: large;
+    }
+}
+
+.usuarioLogado{
+    position: absolute;
+    bottom: 5vh;
+    padding-top: 2vw;
+}
+.logo{
+    span{
+        vertical-align: super;
+    }
+}
+
+.email{
+    font-size:xx-small;
+    color:lightcyan;
+}
+.iconAdmin{
+    width: 64px;
+    margin-right: 5px   ;
+    margin-top: -5px;
+}
+.sinUsuario{
+    margin-top: 2.5vh;
+}
+
+

@@ -1,0 +1,45 @@
+<div class="tablaMaterial" matSort>
+    <!-- Encabezado de la tabla -->
+    <div class="filaEncabezado">
+        <div *ngFor="let titulo of visual;let i=index"class="elementoEncabezado pointer">
+            <span [innerHTML]="titulo"></span>
+        </div>
+        <div *ngIf="accionesParsed?.length" class="elementoEncabezado">Acciones</div>
+    </div>
+
+    <!-- Condicional para la paginación, para saber que elementos mostrar en pantalla -->
+    <div class="contenidoTabla">
+        <ng-container *ngFor="let elemento of datosAMostrar;let i = index">
+            <ng-container
+                [ngTemplateOutlet]=" paginacionLocalT"
+                [ngTemplateOutletContext]="{elemento:elemento,i:i}"></ng-container>
+        </ng-container>
+    </div>
+</div>
+
+
+<!-- PAGINACIONLOCAL Template para la evaluación de datos si utiliza la paginación local -->
+<ng-template #paginacionLocalT let-elemento='elemento' let-i='i'>
+    <div [class]="elemento === elementoSeleccionado ? 'filaContenido filaSeleccionada pointer' : seleccionable ? 'filaContenido pointer' : 'filaContenido' "
+        (click)="seleccion(elemento)">
+        <!--Contenido del TD-->
+        <ng-template [ngTemplateOutlet]="TDContenido" [ngTemplateOutletContext]="{elemento:elemento}">
+        </ng-template>
+    </div>
+</ng-template>
+
+
+
+
+<!-- TDCONTENIDO Template utilizada para cargar el TD en cuestión -->
+<ng-template #TDContenido let-elemento='elemento'>
+    <div *ngFor="let atributo of modelo" class="elementoContenido">
+        <app-elemento-tabla [campo]="elemento[atributo]" [atributo]="atributo" [elemento]="elemento">
+        </app-elemento-tabla>
+    </div>
+
+    <div *ngIf="accionesParsed?.length" (click)="$event.stopPropagation()" class="elementoContenido elementoAcciones">
+        <app-accion-tabla *ngFor="let accion of accionesParsed" [accion]="accion" [elemento]="elemento"
+            (clicked)="doAccion(elemento,accion.funcion)"></app-accion-tabla>
+    </div>
+</ng-template>

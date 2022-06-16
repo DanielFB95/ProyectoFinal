@@ -1,0 +1,55 @@
+mat-card {
+    width: 50vw;
+    margin: auto;
+    margin-top: 20vh;
+    padding: 2vw;
+    border-radius: 1em;
+    font-size: large;
+    background: none;
+    text-align: center;
+    button {
+        width: 50%;
+        border-radius: 2vw;
+        font-size: large;
+    }
+    mat-form-field {
+        width: 100%;
+        margin-top: 2vh;
+    }
+    mat-card-header {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+
+    .logo {
+        margin: auto;
+        background-size: cover;
+       background-image: url("../../assets/icon.png");
+        border-radius: unset;
+        width: 256px;
+        height: 128px;
+    }
+    .auxiliares {
+        padding: 1vw;
+        a {
+            margin: 2vw;
+            font-size: smaller;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    button {
+        width: 100%;
+    }
+    a {
+        display: block;
+    }
+    mat-card {
+        width: 80vw !important;
+    }
+}
+
+::ng-deep .mat-card-header-text {
+    margin: auto !important;
+}
