@@ -29,7 +29,7 @@ class _RecetaScreenState extends State<RecetaScreen> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height / 0.5,
           padding: const EdgeInsets.only(top: 10),
           decoration: const BoxDecoration(
               image: DecorationImage(
@@ -72,6 +72,7 @@ class _RecetaScreenState extends State<RecetaScreen> {
     return Padding(
       padding: const EdgeInsets.only(left: 30),
       child: SizedBox(
+        height: MediaQuery.of(context).size.height / 0.8,
         width: 300,
         child: ListView.builder(
           shrinkWrap: true,
@@ -87,7 +88,7 @@ class _RecetaScreenState extends State<RecetaScreen> {
 
   Widget _receta(Receta receta) {
     return SizedBox(
-      height: 260,
+      height: 270,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         margin: const EdgeInsets.all(15),

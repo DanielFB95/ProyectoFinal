@@ -37,78 +37,76 @@ class _PacienteScreenState extends State<PacienteScreen> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height / 0.8,
           decoration: BoxDecoration(
               image: const DecorationImage(
                   image: AssetImage("assets/images/fondo_tratamed.jpg"),
                   fit: BoxFit.cover)),
-          child: SizedBox(
-            child: Center(
-              child: FutureBuilder<List<Receta>>(
-                future: recetas,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 35, right: 250),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MenuMedicoScreen()));
-                              },
-                              icon: const Icon(
-                                Icons.keyboard_return,
-                                size: 50,
-                              ),
-                              color: Colors.white,
+          child: Center(
+            child: FutureBuilder<List<Receta>>(
+              future: recetas,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 35, right: 250),
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MenuMedicoScreen()));
+                            },
+                            icon: const Icon(
+                              Icons.keyboard_return,
+                              size: 50,
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 35),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            FormularioRecetaScreen(
-                                                paciente: widget.paciente)));
-                              },
-                              icon: const Icon(
-                                Icons.add,
-                                size: 50,
-                              ),
-                              color: Colors.white,
-                            ),
-                          ),
-                        ]),
-                        Container(
-                          margin: const EdgeInsets.only(left: 10, bottom: 10),
-                          child: const Center(
-                            child: Text(
-                              'RECETAS',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                            color: Colors.white,
                           ),
                         ),
-                        _recetaList(snapshot.data!)
-                      ],
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-                  return const CircularProgressIndicator();
-                },
-              ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 35),
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          FormularioRecetaScreen(
+                                              paciente: widget.paciente)));
+                            },
+                            icon: const Icon(
+                              Icons.add,
+                              size: 50,
+                            ),
+                            color: Colors.white,
+                          ),
+                        ),
+                      ]),
+                      Container(
+                        margin: const EdgeInsets.only(left: 10, bottom: 10),
+                        child: const Center(
+                          child: Text(
+                            'RECETAS',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      _recetaList(snapshot.data!)
+                    ],
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+                return const CircularProgressIndicator();
+              },
             ),
           )),
     ));
@@ -118,6 +116,7 @@ class _PacienteScreenState extends State<PacienteScreen> {
     return Padding(
       padding: const EdgeInsets.only(left: 30),
       child: SizedBox(
+        height: MediaQuery.of(context).size.height,
         width: 300,
         child: ListView.builder(
           shrinkWrap: true,
@@ -132,8 +131,8 @@ class _PacienteScreenState extends State<PacienteScreen> {
   }
 
   Widget _receta(Receta receta) {
-    return SizedBox(
-      height: 260,
+    return Container(
+      height: 270,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         margin: const EdgeInsets.all(15),

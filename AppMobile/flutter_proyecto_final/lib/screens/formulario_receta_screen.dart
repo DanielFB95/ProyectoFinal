@@ -46,7 +46,8 @@ class _FormularioRecetaScreenState extends State<FormularioRecetaScreen> {
   bool valueViernes = false;
   bool valueSabado = false;
   bool valueDomingo = false;
-  String dropdownValue = 'Ibuprofeno';
+  String dropdownValue = 'Simbastina';
+  String idMedicamento = '';
 
   @override
   void initState() {
@@ -125,11 +126,42 @@ class _FormularioRecetaScreenState extends State<FormularioRecetaScreen> {
                                 onChanged: (String? newValue) {
                                   setState(() {
                                     dropdownValue = newValue!;
+                                    if (newValue.contains("Simbastina")) {
+                                      idMedicamento = "1";
+                                    } else if (newValue.contains("Aspirina")) {
+                                      idMedicamento = "2";
+                                    } else if (newValue.contains("Omeprazol")) {
+                                      idMedicamento = "3";
+                                    } else if (newValue
+                                        .contains("Lexotiroxina sódica")) {
+                                      idMedicamento = "4";
+                                    } else if (newValue.contains("Ramipril")) {
+                                      idMedicamento = "5";
+                                    } else if (newValue
+                                        .contains("Paracetamol")) {
+                                      idMedicamento = "6";
+                                    } else if (newValue
+                                        .contains("Atorvastatina")) {
+                                      idMedicamento = "7";
+                                    } else if (newValue
+                                        .contains("Salbutamol")) {
+                                      idMedicamento = "8";
+                                    } else if (newValue
+                                        .contains("Lansoprazol")) {
+                                      idMedicamento = "9";
+                                    }
                                   });
                                 },
                                 items: <String>[
-                                  'Ibuprofeno',
+                                  'Simbastina',
+                                  'Aspirina',
+                                  'Omeprazol',
+                                  'Lexotiroxina sódica',
+                                  'Ramipril',
                                   'Paracetamol',
+                                  'Atorvastatina',
+                                  'Salbutamol',
+                                  'Lansoprazol'
                                 ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
@@ -383,7 +415,7 @@ class _FormularioRecetaScreenState extends State<FormularioRecetaScreen> {
                                         fechaFin: fechaFin.text,
                                         diasDeTomas: diasDeTomas,
                                         momentosDeTomas: momentosDeTomas,
-                                        idMedicamento: "2p",
+                                        idMedicamento: idMedicamento,
                                         idPaciente: widget.paciente.id);
                                     recetaRepository.nuevaReceta(nuevaReceta);
                                     Navigator.push(
