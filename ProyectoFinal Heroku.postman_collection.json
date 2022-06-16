@@ -470,7 +470,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://consultamedicaapp.herokuapp.com/user/paciente/ac11b4be-816b-15d0-8181-6ba698030001",
+							"raw": "https://consultamedicaapp.herokuapp.com/user/paciente/ac109d9a-816d-1c2f-8181-6dbcc2d90001",
 							"protocol": "https",
 							"host": [
 								"consultamedicaapp",
@@ -480,7 +480,7 @@
 							"path": [
 								"user",
 								"paciente",
-								"ac11b4be-816b-15d0-8181-6ba698030001"
+								"ac109d9a-816d-1c2f-8181-6dbcc2d90001"
 							]
 						}
 					},

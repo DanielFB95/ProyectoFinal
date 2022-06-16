@@ -37,6 +37,7 @@ class _PacienteScreenState extends State<PacienteScreen> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               image: const DecorationImage(
                   image: AssetImage("assets/images/fondo_tratamed.jpg"),

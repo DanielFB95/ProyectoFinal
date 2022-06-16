@@ -29,6 +29,7 @@ class _RecetaScreenState extends State<RecetaScreen> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
+          height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.only(top: 10),
           decoration: const BoxDecoration(
               image: DecorationImage(
