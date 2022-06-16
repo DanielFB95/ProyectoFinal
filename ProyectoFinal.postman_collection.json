@@ -1,0 +1,959 @@
+{
+	"info": {
+		"_postman_id": "4ac251b8-144b-497c-866a-c4705591d336",
+		"name": "ProyectoFinal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17654593"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@clinica.es\",\r\n    \"password\": \"daniel12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Especialidad",
+			"item": [
+				{
+					"name": "Crear especialidad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Traumatólogo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/especialidad/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"especialidad",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar especialidad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Medico de familia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/especialidad/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"especialidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una especialidad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/especialidad/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"especialidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todas las especilidades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/especialidad/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"especialidad",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar una especilidad",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/especialidad/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"especialidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Medicamento",
+			"item": [
+				{
+					"name": "Crear medicamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nolotil\",\r\n    \"descripcion\": \"Descripcion de prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/medicamento/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medicamento",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un medicamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/medicamento/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medicamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los medicamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/medicamento/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medicamento",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar medicamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Paracetamol\",\r\n    \"descripcion\": \"Descripcion de prueba EDITADA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/medicamento/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medicamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un medicamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/medicamento/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medicamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Crear un admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"email\": \"fernandez.bedan20@triana.salesianos.ed\",\r\n    \"telefono\": \"555-555-555\",\r\n    \"dni\": \"A123456789\",\r\n    \"fechaNacimiento\": \"22/11/1995\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/user/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"user",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paciente",
+			"item": [
+				{
+					"name": "Crear paciente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "{\n    \"nombre\": \"Daniel\",\n    \"apellidos\": \"Fernández Bernal\",\n        \"fechaNacimiento\": \"1995-11-22\",\n    \"email\": \"paciente@clinica.es\",\n    \"telefono\": \"555-555-555\",\n    \"dni\": \"A123456789\",\n    \"direccion\": \"Calle Gran Poder, 1\",\n    \"password\": \"daniel12\",\n    \"password2\": \"daniel12\",\n    \"observaciones\": \"Texto de prueba\"\n}",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/E:/Desktop/ProyectosClase/AD Y PSP/ProyectoMiarma/Miarma/uploads/imagen.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/user/paciente/c0a83801-814c-1eef-8181-4c8fefd90001",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"user",
+								"paciente",
+								"c0a83801-814c-1eef-8181-4c8fefd90001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/paciente/ac128001-8133-1855-8181-337979960002",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								"ac128001-8133-1855-8181-337979960002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/paciente/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un paciente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandezbedan20@triana.salesianos.edu\",\r\n    \"telefono\": \"Nuevo tlf de prueba\",\r\n    \"dni\": \"Nuevo dni de prueba\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"observaciones\": \"Texto de prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/paciente/c0a83801-8128-1081-8181-287358880002",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								"c0a83801-8128-1081-8181-287358880002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/paciente/ac128001-8134-1622-8181-348723410002",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								"ac128001-8134-1622-8181-348723410002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener las recetas de un paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/paciente/recetas/ac128001-8147-18f8-8181-47b9ae820003",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"paciente",
+								"recetas",
+								"ac128001-8147-18f8-8181-47b9ae820003"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "Crear medico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "{\n    \"nombre\": \"Daniel\",\n    \"apellidos\": \"Fernández\",\n    \"fechaNacimiento\": \"1995-11-22\",\n    \"email\": \"medico@clinica.es\",\n    \"telefono\": \"555-555-555\",\n    \"dni\": \"A123456789\",\n    \"direccion\": \"Calle Gran Poder, 1\",\n    \"password\": \"daniel12\",\n    \"password2\": \"daniel12\",\n    \"numColegiado\": \"B222222222\",\n    \"especialidad\": 1\n}",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/E:/Desktop/ProyectosClase/AD Y PSP/ProyectoMiarma/Miarma/uploads/1028_imagen_227028.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/user/medico",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"user",
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un médico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/medico/ac128001-8133-1326-8181-3354b21b0001",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								"ac128001-8133-1326-8181-3354b21b0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los medicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/medico/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener pacientes de un médico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/medico/pacientes/ac128001-8147-1c8c-8181-47bd12da0001",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								"pacientes",
+								"ac128001-8147-1c8c-8181-47bd12da0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un médico",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Daniel\",\r\n    \"apellidos\": \"Fernández Bernal\",\r\n    \"email\": \"fernandebedan@trianasalesianos.edu\",\r\n    \"telefono\": \"Nuevo telefono\",\r\n    \"dni\": \"nuevo dni\",\r\n    \"direccion\": \"Calle Gran Poder, 1\",\r\n    \"password\": \"daniel12\",\r\n    \"password2\": \"daniel12\",\r\n    \"especialidad\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/medico/ac128001-8133-1326-8181-3354b21b0001",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								"ac128001-8133-1326-8181-3354b21b0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un medico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/medico/ac128001-8149-1330-8181-4993c0940001",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"medico",
+								"ac128001-8149-1330-8181-4993c0940001"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Receta",
+			"item": [
+				{
+					"name": "Crear receta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaInicio\": \"20/06/2022\",\r\n    \"fechaFin\": \"24/06/2022\",\r\n    \"diasDeTomas\": [\"LUNES\",\"MIERCOLES\",\"VIERNES\"],\r\n    \"momentosDeTomas\": [\"MANIANA\",\"TARDE\",\"NOCHE\"],\r\n    \"idMedicamento\": \"1\",\r\n    \"idPaciente\": \"ac128001-8134-19f5-8181-34cc2c0c0004\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/receta/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"receta",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una receta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/receta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"receta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obterner listado de recetas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/receta/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"receta",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar una receta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaInicio\": \"2022-06-25\",\r\n    \"fechaFin\": \"2022-06-30\",\r\n    \"diasDeTomas\": [\"LUNES\",\"MARTES\",\"JUEVES\",\"VIERNES\"],\r\n    \"momentosDeTomas\": [\"MAÑANA\",\"TARDE\",\"NOCHE\"],\r\n    \"idMedicamento\": \"1\",\r\n    \"idPaciente\": \"ac128001-8134-1322-8181-3474b59a0002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/receta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"receta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar una receta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/receta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"receta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
