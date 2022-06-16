@@ -9,7 +9,6 @@ import 'package:flutter_proyecto_final/repositories/medicamento_repository/medic
 import 'package:flutter_proyecto_final/repositories/recetaRepository/receta_repository.dart';
 import 'package:flutter_proyecto_final/repositories/recetaRepository/receta_repositoyr_impl.dart';
 import 'package:flutter_proyecto_final/screens/menu_medico_screen.dart';
-import 'package:flutter_proyecto_final/screens/paciente_screen.dart';
 import 'package:intl/intl.dart';
 
 class FormularioRecetaScreen extends StatefulWidget {
@@ -130,7 +129,6 @@ class _FormularioRecetaScreenState extends State<FormularioRecetaScreen> {
                                 },
                                 items: <String>[
                                   'Ibuprofeno',
-                                  'Nolotil',
                                   'Paracetamol',
                                 ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
@@ -385,7 +383,7 @@ class _FormularioRecetaScreenState extends State<FormularioRecetaScreen> {
                                         fechaFin: fechaFin.text,
                                         diasDeTomas: diasDeTomas,
                                         momentosDeTomas: momentosDeTomas,
-                                        idMedicamento: "1",
+                                        idMedicamento: "2p",
                                         idPaciente: widget.paciente.id);
                                     recetaRepository.nuevaReceta(nuevaReceta);
                                     Navigator.push(

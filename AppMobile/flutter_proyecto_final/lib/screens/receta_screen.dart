@@ -86,7 +86,7 @@ class _RecetaScreenState extends State<RecetaScreen> {
   }
 
   Widget _receta(Receta receta) {
-    return Container(
+    return SizedBox(
       height: 260,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -97,7 +97,7 @@ class _RecetaScreenState extends State<RecetaScreen> {
           children: [
             Row(
               children: [
-                Padding(padding: EdgeInsets.only(left: 15)),
+                const Padding(padding: EdgeInsets.only(left: 15)),
                 Column(
                   children: [
                     const Padding(
@@ -114,7 +114,7 @@ class _RecetaScreenState extends State<RecetaScreen> {
                     ),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(left: 75)),
+                const Padding(padding: EdgeInsets.only(left: 75)),
                 Column(
                   children: [
                     const Padding(

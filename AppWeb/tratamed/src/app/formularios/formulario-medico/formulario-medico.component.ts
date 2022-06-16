@@ -35,17 +35,18 @@ export class FormularioMedicoComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = new FormGroup({
-            nombre: new FormControl(this.medico?.nombre),
-            apellido: new FormControl(this.medico?.apellidos),
-            telefono: new FormControl(this.medico?.telefono),
-            password: new FormControl(this.medico?.password),
-            dni: new FormControl(this.medico?.dni),
-            direccion: new FormControl(this.medico?.direccion),
-            password2: new FormControl(),
-            email: new FormControl(this.medico?.email),
+            nombre: new FormControl(this.medico?.nombre ?? 'Daniel'),
+            apellido: new FormControl(this.medico?.apellidos ?? 'Fernández Bernal'),
+            telefono: new FormControl(this.medico?.telefono ?? 620189675),
+            password: new FormControl(this.medico?.password ?? 'daniel12'),
+            dni: new FormControl(this.medico?.dni ?? '123456789A'),
+            direccion: new FormControl(this.medico?.direccion ?? 'Calle Gran Poder, 1'),
+            password2: new FormControl('daniel12'),
+            email: new FormControl(this.medico?.email ?? 'daniel@clinica.es'),
+
             fechaNacimiento: new FormControl(this.medico?.fechaNacimiento ?? new Date()),
-            numeroColegiado: new FormControl(this.medico?.numColegiado),
-            especialidad: new FormControl(this.medico?.especialidad?.id),
+            numeroColegiado: new FormControl(this.medico?.numColegiado ?? '11111111B'),
+            especialidad: new FormControl(this.medico?.especialidad?.id ?? 1),
             inputFotos: new FormControl(null)
         });
         if (this.inspeccion) this.form.disable();

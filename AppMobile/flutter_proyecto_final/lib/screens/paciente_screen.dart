@@ -132,7 +132,7 @@ class _PacienteScreenState extends State<PacienteScreen> {
   }
 
   Widget _receta(Receta receta) {
-    return Container(
+    return SizedBox(
       height: 260,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
